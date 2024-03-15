@@ -107,6 +107,40 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="mundana\about.html" />
+    <Content Include="mundana\article.html" />
+    <Content Include="mundana\assets\css\main.css" />
+    <Content Include="mundana\assets\css\vendor\aos.css" />
+    <Content Include="mundana\assets\css\vendor\bootstrap-toc.css" />
+    <Content Include="mundana\assets\css\vendor\prism.css" />
+    <Content Include="mundana\assets\img\demo\1.jpg" />
+    <Content Include="mundana\assets\img\demo\3.jpg" />
+    <Content Include="mundana\assets\img\demo\5.jpg" />
+    <Content Include="mundana\assets\img\demo\avatar2.jpg" />
+    <Content Include="mundana\assets\img\demo\blog4.jpg" />
+    <Content Include="mundana\assets\img\demo\blog5.jpg" />
+    <Content Include="mundana\assets\img\demo\blog6.jpg" />
+    <Content Include="mundana\assets\img\demo\blog8.jpg" />
+    <Content Include="mundana\assets\img\demo\home.jpg" />
+    <Content Include="mundana\assets\img\demo\intro.jpg" />
+    <Content Include="mundana\assets\img\demo\sal.jpg" />
+    <Content Include="mundana\assets\img\favicon.ico" />
+    <Content Include="mundana\assets\img\screenshot-mundana-article.png" />
+    <Content Include="mundana\assets\img\screenshot-mundana-category.png" />
+    <Content Include="mundana\assets\img\screenshot-mundana.png" />
+    <Content Include="mundana\assets\js\functions.js" />
+    <Content Include="mundana\assets\js\vendor\aos.js" />
+    <Content Include="mundana\assets\js\vendor\bootstrap-toc.js" />
+    <Content Include="mundana\assets\js\vendor\bootstrap.min.js" />
+    <Content Include="mundana\assets\js\vendor\jquery.min.js" />
+    <Content Include="mundana\assets\js\vendor\popper.min.js" />
+    <Content Include="mundana\assets\js\vendor\prism.js" />
+    <Content Include="mundana\assets\js\vendor\share.js" />
+    <Content Include="mundana\category.html" />
+    <Content Include="mundana\docs.html" />
+    <Content Include="mundana\gulpfile.js" />
+    <Content Include="mundana\index.html" />
+    <Content Include="mundana\license.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +191,109 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="mundana\assets\css\main.css.map" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\bootstrap-grid.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\bootstrap-user-variables.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\bootstrap.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_alert.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_background-variant.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_badge.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_border-radius.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_box-shadow.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_breakpoints.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_buttons.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_caret.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_clearfix.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_float.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_forms.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_gradients.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_grid-framework.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_grid.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_hover.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_image.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_list-group.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_lists.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_nav-divider.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_navbar-align.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_pagination.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_reset-text.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_resize.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_screen-reader.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_size.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_table-row.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_text-emphasis.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_text-hide.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_text-truncate.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_transition.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\mixins\_visibility.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_align.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_background.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_borders.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_clearfix.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_display.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_embed.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_flex.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_float.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_position.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_screenreaders.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_shadows.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_sizing.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_spacing.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_text.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\utilities\_visibility.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_alert.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_badge.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_breadcrumb.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_button-group.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_buttons.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_card.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_carousel.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_close.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_code.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_custom-forms.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_dropdown.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_forms.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_functions.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_grid.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_images.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_input-group.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_jumbotron.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_list-group.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_media.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_mixins.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_modal.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_nav.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_navbar.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_pagination.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_popover.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_print.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_progress.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_reboot.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_root.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_tables.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_tooltip.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_transitions.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_type.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_utilities.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\bootstrap\source\_variables.scss" />
+    <Content Include="mundana\assets\scss\1-frameworks\_index.scss" />
+    <Content Include="mundana\assets\scss\2-plugins\_index.scss" />
+    <Content Include="mundana\assets\scss\3-base\_base.scss" />
+    <Content Include="mundana\assets\scss\3-base\_index.scss" />
+    <Content Include="mundana\assets\scss\3-base\_mixins.scss" />
+    <Content Include="mundana\assets\scss\3-base\_variables.scss" />
+    <Content Include="mundana\assets\scss\4-modules\_index.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_columns.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_containers.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_extends.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_footer.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_header.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_index.scss" />
+    <Content Include="mundana\assets\scss\5-layout\_layout.scss" />
+    <Content Include="mundana\assets\scss\main.scss" />
+    <Content Include="mundana\package.json" />
+    <Content Include="mundana\README.md" />
     <None Include="packages.config" />
     <Content Include="Views\Anasayfa\AnasayfaIndex.cshtml" />
     <None Include="Web.Debug.config">
@@ -170,6 +307,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Hakkimda\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -189,7 +327,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61379</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44332/</IISUrl>
+          <IISUrl>https://localhost:44333/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

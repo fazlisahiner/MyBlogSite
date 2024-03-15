@@ -14,6 +14,7 @@ namespace BlogSite.Web.Controllers
         //    return View();   bunu kullanmıyacaz
         //}
 
+        //https://www.free-css.com/free-css-templates/page272/mundana
         public ActionResult AnasayfaIndex()
         {
             return View();
