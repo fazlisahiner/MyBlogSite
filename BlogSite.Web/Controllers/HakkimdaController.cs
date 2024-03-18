@@ -9,7 +9,7 @@ namespace BlogSite.Web.Controllers
     public class HakkimdaController : Controller
     {
         // GET: Hakkimda
-        public ActionResult Index()
+        public ActionResult HakkimdaIndex()
         {
             return View();
         }
