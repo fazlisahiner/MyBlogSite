@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "IletisimIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">İletişim</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!--<div class="col-lg-3">-->
+                    <!--
+                    *** PAGES MENU ***
+                    _________________________________________________________
+                    -->
+                    <!--<div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Pages</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-pills flex-column">
+                                <li><a href="text.html" class="nav-link">Text page</a></li>
+                                <li><a href="contact.html" class="nav-link">Contact page</a></li>
+                                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                    <!-- *** PAGES MENU END ***-->
+                    <!--<div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
+                </div>-->
+                <div class="col-lg-12">
+                    <div id="contact" class="box">
+                        <h1>İletişim</h1>
+                        <p class="lead">Merak ettiğiniz birşeyler mi var?</p>
+                        <p>Lütfen bizimle iletişime geçin. Kullanıcı servisimiz 7/24 hizmetinizde.</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-map-marker"></i>Adres</h3>
+                                <p>Burunucu mah.<br>Cinoğlu sokak<br>No:11 Görkem apt.<br>Ünye/ORDU<br><strong>Türkiye</strong></p>
+                            </div>
+                            <!-- /.col-sm-4-->
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-phone"></i> Telefon </h3>
+                                <p class="text-muted">Bu numara Türkiye'den arayanlar için ücretsizdir. Diğer ülkelerden iletişim için elektronik postayı öneririz.</p>
+                                <p><strong>+90 555 444 3322</strong></p>
+                            </div>
+                            <!-- /.col-sm-4-->
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-envelope"></i> Elektronik destek</h3>
+                                <p class="text-muted">Bize mailinizi yazın</p>
+                                <ul>
+                                    <li><strong><a href="mailto:">info@fakeemail.com</a></strong></li>
+                                    @*<li><strong><a href="#">Ticketio</a></strong> - our ticketing support platform</li>*@
+                                </ul>
+                            </div>
+                            <!-- /.col-sm-4-->
+                        </div>
+                        <!-- /.row-->
+                        <hr>
+                        <div id="map"></div>
+                        <hr>
+                        <h2>İletişim formu </h2>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">İsim</label>
+                                        <input id="firstname" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Soyisim</label>
+                                        <input id="lastname" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="subject">Konu</label>
+                                        <input id="subject" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="message">Mesaj</label>
+                                        <textarea id="message" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                        </form>
+                    </div>
+                </div>
+                <!-- /.col-md-9-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
