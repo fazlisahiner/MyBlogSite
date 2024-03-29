@@ -240,6 +240,7 @@
     <Compile Include="Controllers\AnasayfaController.cs" />
     <Compile Include="Controllers\HakkimdaController.cs" />
     <Compile Include="Controllers\IletisimController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,6 +289,7 @@
     <Content Include="Views\Anasayfa\AnasayfaIndex.cshtml" />
     <Content Include="Views\Hakkimda\HakkimdaIndex.cshtml" />
     <Content Include="Views\Iletisim\IletisimIndex.cshtml" />
+    <Content Include="Views\Kullanici\KullaniciKayitIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
