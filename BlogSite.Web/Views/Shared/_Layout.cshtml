@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Obaju : e-commerce template</title>
+    <title>Fazlı Şahiner</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -34,49 +34,16 @@
         *** TOPBAR ***
         _________________________________________________________
         -->
-        <div id="top">
-            @*<div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Offer of the day</a><a href="#" class="ml-1">Get flat 35% off on orders over $50!</a></div>
-                    <div class="col-lg-6 text-center text-lg-right">
-                        <ul class="menu list-inline mb-0">
-                            <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="register.html">Register</a></li>
-                            <li class="list-inline-item"><a href="contact.html">Contact</a></li>
-                            <li class="list-inline-item"><a href="#">Recently viewed</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>*@
-            <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Kullanıcı Girişi</h5>
-                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="customer-orders.html" method="post">
-                                <div class="form-group">
-                                    <input id="email-modal" type="text" placeholder="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input id="password-modal" type="password" placeholder="şifre" class="form-control">
-                                </div>
-                                <p class="text-center">
-                                    <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
-                                </p>
-                            </form>
-                            <p class="text-center text-muted">Henüz kayıt olmadınız mı?</p>
-                            <p class="text-center text-muted"><a href="register.html"><strong>Kayıt ol</strong></a>! Bir dakikada kolayca kaydolun</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!--<div id="top">--> <!-- burda giriş kutucuğu vardı alta aldım -->
+          
+
             <!-- *** TOP BAR END ***-->
 
 
-        </div>
+        <!--</div>-->
+
+
+
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a href="~/Anasayfa/AnasayfaIndex" class="navbar-brand home">
@@ -87,14 +54,33 @@
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
-                    <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+                    <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button>
+                    <a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
                 </div>
                 <div id="navigation" class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="~/Anasayfa/AnasayfaIndex" class="nav-link ">Anasayfa</a></li>
                         <li class="nav-item"><a href="~/Hakkimda/HakkimdaIndex" class="nav-link ">Hakkımda</a></li>
                         <li class="nav-item"><a href="~/Iletisim/IletisimIndex" class="nav-link ">İletİşİm</a></li>
-                        @*<li class="nav-item"><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>*@
+                        <li class="nav-item dropdown menu-s">
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">GİRİŞ/YENİ KAYIT<b class="caret"></b></a>
+                            <ul class="dropdown-menu megamenu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                           
+                                            <ul class="list-unstyled mb-3">
+                                                <li class="nav-item"><a href="~/Kullanici/GirisIndex" class="nav-link">Giriş</a></li>
+                                                <li class="nav-item"><a href="~/Kullanici/KullaniciKayitIndex" class="nav-link">Yeni Kayıt</a></li>
+                                               
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    
 
                     </ul>
                     <div class="navbar-buttons d-flex justify-content-end">
@@ -103,7 +89,36 @@
                         <!--*******************************************-->
                         <div id="" class="nav-item"><a class="btn btn-primary navbar-btn" href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-user"></i></a></div>
 
-                        <!---->
+                        <!--alttaki giriş kutucuğu-->
+
+                        <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Kullanıcı Girişi</h5>
+                                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="customer-orders.html" method="post">
+                                            <div class="form-group">
+                                                <input id="email-modal" type="text" placeholder="email" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="password-modal" type="password" placeholder="şifre" class="form-control">
+                                            </div>
+                                            <p class="text-center">
+                                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
+                                            </p>
+                                        </form>
+                                        <p class="text-center text-muted">Henüz kayıt olmadınız mı?</p>
+                                        <p class="text-center text-muted"><a href="~/Kullanici/KullaniciKayitIndex"><strong>Kayıt ol</strong></a>! Bir dakikada kolayca kaydolun</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--giriş kutucuğu sonu-->
+
+
                     </div>
                 </div>
             </div>
@@ -132,58 +147,59 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Pages</h4>
+                    <h4 class="mb-3">Sayfalar</h4>
                     <ul class="list-unstyled">
-                        <li><a href="text.html">About us</a></li>
-                        <li><a href="text.html">Terms and conditions</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
+                        <li><a href="~/Hakkimda/HakkimdaIndex">Hakkımda</a></li>
+                        <li><a href="~/Iletisim/IletisimIndex">İletişim</a></li>
+                        
                     </ul>
-                    <hr>
-                    <h4 class="mb-3">User section</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                        <li><a href="register.html">Regiter</a></li>
-                    </ul>
+                   
                 </div>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Top categories</h4>
-                    <h5>Men</h5>
+                    <h4 class="mb-3">Kategoriler</h4>
+                    
                     <ul class="list-unstyled">
-                        <li><a href="category.html">T-shirts</a></li>
-                        <li><a href="category.html">Shirts</a></li>
-                        <li><a href="category.html">Accessories</a></li>
+                        <li><a href="blog.html" >Java Script</a></li>
+                        <li><a href="blog.html" >HTML</a></li>
+                        <li><a href="blog.html" >CSS</a></li>
+                        <li><a href="blog.html" >C#</a></li>
                     </ul>
-                    <h5>Ladies</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="category.html">T-shirts</a></li>
-                        <li><a href="category.html">Skirts</a></li>
-                        <li><a href="category.html">Pants</a></li>
-                        <li><a href="category.html">Accessories</a></li>
-                    </ul>
+                    
+                   
                 </div>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Where to find us</h4>
-                    <p><strong>Obaju Ltd.</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br><strong>Great Britain</strong></p><a href="contact.html">Go to contact page</a>
+                    <h4 class="mb-3">Kullanıcı paneli</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>
+                        <li><a href="~/Kullanici/KullaniciKayitIndex">Kayıt ol</a></li>
+                    </ul>
+                    <hr />
+                    <a href="~/Iletisim/IletisimIndex">İletişim</a>
                     <hr class="d-block d-md-none">
                 </div>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Get the news</h4>
-                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    <h4 class="mb-3">Haberdar olun</h4>
+                    @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
                     <form>
                         <div class="input-group">
                             <input type="text" class="form-control"><span class="input-group-append">
-                                <button type="button" class="btn btn-outline-secondary">Subscribe!</button>
+                                <button type="button" class="btn btn-outline-secondary">Takip!</button>
                             </span>
                         </div>
                         <!-- /input-group-->
                     </form>
                     <hr>
                     <h4 class="mb-3">Stay in touch</h4>
-                    <p class="social"><a href="#" class="facebook external"><i class="fa fa-facebook"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+                    <p class="social">
+                    <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
+                    <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
                 </div>
                 <!-- /.col-lg-3-->
             </div>
@@ -201,14 +217,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
-                    <p class="text-center text-lg-left">©2019 Your name goes here.</p>
+                    <p class="text-center text-lg-left">©2024 Fazlı Şahiner</p>
                 </div>
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <p class="text-center text-lg-right">
-                        Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>
+                        Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>-->
                         <!-- If you want to remove this backlink, pls purchase an Attribution-free License @@ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
-                    </p>
-                </div>
+                    <!--</p>
+                </div>-->
             </div>
         </div>
     </div>

@@ -290,6 +290,7 @@
     <Content Include="Views\Hakkimda\HakkimdaIndex.cshtml" />
     <Content Include="Views\Iletisim\IletisimIndex.cshtml" />
     <Content Include="Views\Kullanici\KullaniciKayitIndex.cshtml" />
+    <Content Include="Views\Kullanici\GirisIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
