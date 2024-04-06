@@ -2331,6 +2331,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AdminPanel\AdminPanelAreaRegistration.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\AdminAnasayfaController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\RolesController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\UsersController.cs" />
     <Compile Include="Articles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2726,6 +2730,9 @@
     <Content Include="Admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Admin\plugins\toastr\toastr.js.map" />
     <Content Include="Admin\README.md" />
+    <Content Include="Areas\AdminPanel\Views\Articles\ArticlesIndex.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Articles\ArticlesAdd.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Categories\CategoryIndex.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Anasayfa\AnasayfaIndex.cshtml" />
@@ -2743,6 +2750,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPanel\Data\" />
+    <Folder Include="Areas\AdminPanel\Views\Roles\" />
+    <Folder Include="Areas\AdminPanel\Views\Users\" />
     <Folder Include="distribution\vendor\font-awesome\less\" />
     <Folder Include="distribution\vendor\font-awesome\scss\" />
     <Folder Include="Models\" />

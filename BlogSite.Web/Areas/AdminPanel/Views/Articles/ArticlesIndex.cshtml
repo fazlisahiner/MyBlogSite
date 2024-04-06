@@ -1,0 +1,109 @@
+﻿@model List<Articles>
+
+@{
+    ViewBag.Title = "ArticlesIndex";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">
+                    <a href='~/AdminPanel/Articles/ArticlesAdd' class='btn btn-block btn-success col-md-3'> Makale Ekle</a>
+                </h1>
+            </div><!-- /.col -->
+
+            <div class="col-sm-6">
+
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Makale Listesi</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Başlık</th>
+                            <th>Makale</th>
+                            <th>Eklenme Tarihi</th>
+                            <th>Aktif Mi</th>
+                            <th>Detay</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ArticleId</td>
+                                <td>
+                                    @item.Title
+                                </td>
+                                <td>@item.Content</td>
+                                <td> 4</td>
+                                <td>X</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Rendering engine</th>
+                            <th>Browser</th>
+                            <th>Platform(s)</th>
+                            <th>Engine version</th>
+                            <th>CSS grade</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+
+    </div>
+</section>
+
+
+
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });</script>
+

@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/Admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/Admin/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -36,8 +39,8 @@
 
         <!-- Preloader -->
         @*<div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/Admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>*@
+                <img class="animation__shake" src="/Admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            </div>*@
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -180,9 +183,9 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             @*<a href="index3.html" class="brand-link">  buraya logo filan konulabilir
-                <img src="/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-            </a>*@
+                    <img src="/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">AdminLTE 3</span>
+                </a>*@
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -213,19 +216,19 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                        
-                   
+
+
                         <li class="nav-header">Sayfalar</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/AdminPanel/Articles/ArticlesIndex" class="nav-link">
                                 <i class="nav-icon far fa-circle text-danger"></i>
-                                <p class="text">Önemli</p>
+                                <p class="text">Makaleler</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/AdminPanel/Categories/CategoryIndex" class="nav-link">
                                 <i class="nav-icon far fa-circle text-warning"></i>
-                                <p>Uyarılar</p>
+                                <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -244,14 +247,19 @@
         <!-- Content Wrapper. Contains page content -->
         <!--burayı anasayfaya attım-->
         <!-- /.content-wrapper -->
+        <div class=" content-wrapper">
+            @RenderBody()
+        </div>
 
-        @RenderBody()
+
+
+
         <footer class="main-footer">
             @*<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
-            </div>*@
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 3.2.0
+                </div>*@
         </footer>
 
         <!-- Control Sidebar -->
@@ -266,6 +274,13 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="/Admin/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/Admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/Admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
     <script>$.widget.bridge('uibutton', $.ui.button)</script>
     <!-- Bootstrap 4 -->
     <script src="/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
