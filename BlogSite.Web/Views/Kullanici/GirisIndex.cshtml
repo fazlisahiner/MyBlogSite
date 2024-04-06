@@ -37,6 +37,9 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
                             </div>
+                            <p class="text-center" style="color: red; font-size:20px; font-weight:bolder; justify-content:center">
+                                @ViewBag.Message
+                            </p>
                             <p class="text-center text-muted">Henüz kayıt olmadınız mı?</p>
                             <p class="text-center text-muted"><a href="register.html"><strong>Kayıt ol</strong></a>! Bir dakikada kolayca kaydolun</p>
 
@@ -44,9 +47,9 @@
                     </div>
                 </div>
                 <div class="col-lg-2">
-                    <p>
+                    @*<p>
                         @ViewBag.Message
-                    </p>
+                    </p>*@
                 </div>
 
             </div>
