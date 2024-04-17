@@ -2333,6 +2333,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\AdminAnasayfaController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\CommentsController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\RolesController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\UsersController.cs" />
     <Compile Include="Articles.cs">
@@ -2733,6 +2734,13 @@
     <Content Include="Areas\AdminPanel\Views\Articles\ArticlesIndex.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Articles\ArticlesAdd.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Categories\CategoryIndex.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Roles\RolesIndex.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Users\UsersIndex.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Roles\RolesAdd.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Categories\CategoryAdd.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Comments\CommentsIndex.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Comments\CommentsAdd.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Users\UserAdd.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Anasayfa\AnasayfaIndex.cshtml" />
@@ -2750,8 +2758,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPanel\Data\" />
-    <Folder Include="Areas\AdminPanel\Views\Roles\" />
-    <Folder Include="Areas\AdminPanel\Views\Users\" />
     <Folder Include="distribution\vendor\font-awesome\less\" />
     <Folder Include="distribution\vendor\font-awesome\scss\" />
     <Folder Include="Models\" />

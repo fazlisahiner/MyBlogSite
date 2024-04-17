@@ -14,12 +14,12 @@
                 </h1>
             </div><!-- /.col -->
 
-            <div class="col-sm-6">
+            @*<div class="col-sm-6">
 
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Makale Listesi</li>
+                    <li class="breadcrumb-item active"></li>
                 </ol>
-            </div><!-- /.col -->
+            </div>*@<!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
@@ -29,21 +29,21 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Makale Listesi</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Başlık</th>
-                            <th>Makale</th>
-                            <th>Eklenme Tarihi</th>
-                            <th>Aktif Mi</th>
-                            <th>Detay</th>
-                            <th>Güncelle</th>
-                            <th>Sil</th>
+                            <th width= "30px">ID</th>
+                            <th width= "80px">Başlık</th>
+                            <th >Makale</th>
+                            <th width= "80px">Eklenme Tarihi</th>
+                            <th width= "50px">Aktif Mi</th>
+                            <th width= "50px">Detay</th>
+                            <th width= "50px">Güncelle</th>
+                            <th width= "50px">Sil</th>
 
                         </tr>
                     </thead>
@@ -56,7 +56,7 @@
                                     @item.Title
                                 </td>
                                 <td>@item.Content</td>
-                                <td> 4</td>
+                                <td>@item.CreateDate</td>
                                 <td>X</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
@@ -70,7 +70,7 @@
                             </tr>
                         }
                     </tbody>
-                    <tfoot>
+                    @*<tfoot>
                         <tr>
                             <th>Rendering engine</th>
                             <th>Browser</th>
@@ -78,7 +78,7 @@
                             <th>Engine version</th>
                             <th>CSS grade</th>
                         </tr>
-                    </tfoot>
+                    </tfoot>*@
                 </table>
             </div>
             <!-- /.card-body -->

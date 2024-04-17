@@ -1,0 +1,82 @@
+﻿@model List<Articles>
+
+
+@{
+    ViewBag.Title = "CommentsAdd";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Yorum Ekle</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form action='~/Adminpanel/Comments/CommentsAdd' method="post">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Yorum</label>
+                                <textarea name="yorum" class="form-control" rows="3" placeholder="İçerik"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Makale seçiniz</label>
+
+
+
+                                <select name="article" class="form-control">
+                                    <option>Seçiniz</option>
+
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <option>@item.Title </option>
+
+
+                                    }
+
+                                </select>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+
+                        <div class="col-sm-12">
+
+                            <div class="text-center">
+                                <button type="submit" name="userAddButton" class="btn btn-primary">Yorum yap</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </form>
+                <p class="text-center" style="color: red; font-size:20px; font-weight:bolder; justify-content:center">
+                    @ViewBag.Message
+                </p>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</section>
+

@@ -1,17 +1,16 @@
-﻿@model List<Categories>
+﻿@model List<Users>
 
 @{
-    ViewBag.Title = "CategoryIndex";
+    ViewBag.Title = "UsersIndex";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
-
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">
-                    <a href='~/AdminPanel/Categories/CategoryAdd' class='btn btn-block btn-success col-md-3'> Kategori Ekle</a>
+                    <a href='~/Adminpanel/Users/UserAdd' class='btn btn-block btn-success col-md-3'> Kullanıcı Ekle</a>
                 </h1>
             </div><!-- /.col -->
 
@@ -28,23 +27,23 @@
 
 <section class="content">
     <div class="container-fluid">
-        
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Kategori Listesi</h3>
+                <h3 class="card-title">Kullanıcı Listesi</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th width="80px" >ID</th>
-                            <th>İsim</th>
-                            
-                            @*<th>Aktif Mi</th>*@
-                            <th width="120px" >Detay</th>
-                            <th width="120px" >Güncelle</th>
-                            <th width="120px" >Sil</th>
+                            <th width= "50px">ID</th>
+                            <th>Kullanıcı adı</th>
+                            @*<th>Rol Id</th>*@
+                            <th width= "200px">Eklenme Tarihi</th>
+                            <th width= "80px">Aktif Mi</th>
+                            <th width= "80px">Detay</th>
+                            <th width= "80px">Güncelle</th>
+                            <th width= "80px">Sil</th>
 
                         </tr>
                     </thead>
@@ -52,12 +51,13 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.CategoryId</td>
+                                <td>@item.UsersId</td>
                                 <td>
-                                    @item.CategoryName
+                                    @item.UserName
                                 </td>
-                               
-                                @*<td>X</td>*@
+                                @*<td>@item.RoleId</td>*@
+                                <td> @item.CreateDate</td>
+                                <td>@item.IsActive</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
                                 </td>
@@ -84,8 +84,11 @@
             <!-- /.card-body -->
         </div>
 
+
     </div>
-    </section>
+</section>
+
+
 
 <script>
     $(function () {
@@ -103,3 +106,5 @@
             "responsive": true,
         });
     });</script>
+
+

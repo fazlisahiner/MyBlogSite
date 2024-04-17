@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "CategoryAdd";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="content-header">
+</div>
+<section class="content">
+    <div class="container-fluid">
+        @*/BlogSite.Web*@
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Kategori ekle</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <form action='~/AdminPanel/Categories/CategoryAdd' method="post">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label for="name">Kategori adı</label>
+                                <input id="name" name="category" type="text" class="form-control">
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" name="categoryButton" class="btn btn-primary"> Kategori ekle</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </form>
+                <p class="text-center" style="color: red; font-size:20px; font-weight:bolder; justify-content:center">
+                    @ViewBag.Message
+                </p>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</section>

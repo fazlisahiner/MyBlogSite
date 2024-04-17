@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace BlogSite.Web.Controllers
@@ -79,19 +80,48 @@ namespace BlogSite.Web.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult KullaniciKayitIndex(FormCollection form)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
-                // bunu yazıp alt+shift+f10
+            // bunu yazıp alt+shift+f10
 
-            Users model = new Users();
-            model.UserName = form["isimInput"].Trim();
-            model.EMail= form["emailInput"].Trim() ;
-            model.UserPassword= form["sifreInput"].Trim();
+            string email = form["emailInput"].Trim(); 
+            
 
-            db.Users.Add(model);
-            db.SaveChanges();
+            
+     
+            var getirEmail = db.Users.Where(k => k.EMail == email ).FirstOrDefault();
+
+
+            if (getirEmail != null) 
+            {
+                ViewBag.Message = "Bu e-mail daha önce kullanıldı, lütfen farklı bir e-mail kullanın! ";
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Users model = new Users();
+                model.UserName = form["isimInput"].Trim();
+                model.EMail = form["emailInput"].Trim();
+                model.UserPassword = form["sifreInput"].Trim();
+                model.IsActive = true;
+                model.RoleId = 0;
+                model.CreateDate = DateTime.Now;
+
+                db.Users.Add(model);
+                db.SaveChanges();
+                ViewBag.Message = "Yeni kullanıcı kaydı başarılı ";
+                Thread.Sleep(3000);
+            }
+
+
+
+
+
+            //db.Users.Add(model);
+            //db.SaveChanges();
 
             return View();
         }
