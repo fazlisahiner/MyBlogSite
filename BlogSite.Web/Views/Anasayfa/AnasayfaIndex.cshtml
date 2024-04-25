@@ -4,14 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model Tuple<List<Categories>, List<Articles>>
+
+@*@foreach (var makale in Model.Item2)
+    {*@
+
+@*@model List<Articles>*@
 
 <div id="all">
     <div id="content">
         <div class="container">
             <!--<div class="row">
                 <div class="col-lg-12">-->
-                    <!-- breadcrumb-->
-                    <!--<nav aria-label="breadcrumb">
+            <!-- breadcrumb-->
+            <!--<nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
                             <li aria-current="page" class="breadcrumb-item active">Blog liste</li>
@@ -24,31 +30,46 @@
                 *** LEFT COLUMN ***
                 _________________________________________________________
                 -->
-                <div id="blog-listing" class="col-lg-9">
-                    <div class="box">
-                        <h1>Blog Kategori</h1>
-                        <p>buraya blog kategorisini yazacağız</p>
-                    </div>
+                <div id="blog-listing" class="col-lg-12">
+                    @*<div class="box">
+                        <h1>Kategori</h1>
+                        <p>
+                            
+
+
+                        </p>
+                    </div>*@
                     <!-- post-->
-                    <div class="post">
-                        <h2><a href="post.html">İlk blog yazısı başlığı</a></h2>
-                        <p class="author-category">By <a href="#">Yazar ismi</a> in <a href=""> yazının ait olduğu dergi</a></p>
-                        <hr>
-                        <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a><a href="post.html"><i class="fa fa-comment-o"></i> 8 Comments</a></p>
-                        <div class="image"><a href="post.html"><img src="/distribution/img/blog2.jpg" alt="Example blog post alt" class="img-fluid"></a></div>
-                        <p class="intro">Post özeti yani başlangıcı</p>
-                        <p class="read-more"><a href="post.html" class="btn btn-primary">Okumaya devam et</a></p>
-                    </div>
+                    @foreach (var makale in Model.Item2)
+                    {
+
+
+                        <!-- post        -->
+                        <div class="post">
+                            <h2><a href="post.html">@makale.Title</a></h2>
+                            <p class="author-category">By <a href="#">@makale.UserId</a> in <a href="~/Hakkimda/HakkimdaIndex">Fazlı Şahiner</a></p>
+                            <hr>
+                            <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a><a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a></p>
+                            <div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>
+
+                            @if (makale.Content.ToString().Length > 250)
+                            {
+                                <p class="intro"> @makale.Content.ToString().Substring(0, 250) ... </p>
+                                <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
+                            }
+                            else
+                            {
+                                <p class="intro"> @makale.Content </p>
+                            }
+
+
+
+
+
+                        </div>
+
+                    }
                     <!-- post        -->
-                    <div class="post">
-                        <h2><a href="post.html">Who is who - example blog post</a></h2>
-                        <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a></p>
-                        <hr>
-                        <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a><a href="post.html"><i class="fa fa-comment-o"></i> 8 Comments</a></p>
-                        <div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>
-                        <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                        <p class="read-more"><a href="post.html" class="btn btn-primary">Okumaya devam et</a></p>
-                    </div>
                     <div class="pager d-flex justify-content-between">
                         <div class="previous"><a href="#" class="btn btn-outline-primary">← Öncekİ</a></div>
                         <div class="next disabled"><a href="#" class="btn btn-outline-secondary disabled">Sonrakİ →        </a></div>
@@ -56,29 +77,30 @@
                 </div>
                 <!-- /.col-lg-9-->
                 <!-- *** LEFT COLUMN END ***-->
-
-                <div class="col-lg-3">
+                <!--<div class="col-lg-3">
                     <!--
                     *** BLOG MENU ***
                     _________________________________________________________
                     -->
-                    <div class="card sidebar-menu mb-4">
-                        <div class="card-header">
-                            <h3 class="h4 panel-title">Kategoriler</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="nav flex-column nav-pills">
-                                <li><a href="blog.html" class="nav-link">Java Script</a></li>
-                                <li><a href="blog.html" class="nav-link active">HTML</a></li>
-                                <li><a href="blog.html" class="nav-link">CSS</a></li>
-                                <li><a href="blog.html" class="nav-link">C#</a></li>
-                            </ul>
-                        </div>
+                <!--<div class="card sidebar-menu mb-4">
+                    <div class="card-header">
+                        <h3 class="h4 panel-title">Kategoriler</h3>
                     </div>
-                    <!-- /.col-lg-3-->
-                    <!-- *** BLOG MENU END ***-->
-                    @*<div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>*@
-                </div>
+                    <div class="card-body">
+                        <ul class="nav flex-column nav-pills">
+                            ATsembolü foreach (var kategori in Model.Item1)
+                            {
+                                <li><a href="~/Anasayfa/AnasayfaIndex/atsembolü kategori.CategoryId" class="nav-link"> ATsembolükategori.CategoryName</a></li>
+
+                            }
+
+                        </ul>
+                    </div>
+                </div>--> @*bu kısmı layouta aldım*@
+                <!-- /.col-lg-3-->
+                <!-- *** BLOG MENU END ***-->-->
+                <!--@*<div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>*@
+                </div>-->
             </div>
         </div>
     </div>

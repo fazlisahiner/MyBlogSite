@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,11 +37,7 @@
         _________________________________________________________
         -->
         <!--<div id="top">--> <!-- burda giriş kutucuğu vardı alta aldım -->
-          
-
-            <!-- *** TOP BAR END ***-->
-
-
+        <!-- *** TOP BAR END ***-->
         <!--</div>-->
 
 
@@ -48,7 +46,7 @@
             <div class="container">
                 <a href="~/Anasayfa/AnasayfaIndex" class="navbar-brand home">
                     @*<img src="/distribution/img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block">
-        <img src="/distribution/img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none">*@
+                        <img src="/distribution/img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none">*@
                     <h3>Fazlı Şahiner</h3>
                     @*<span class="sr-only">Fazlı Şahiner</span>*@
                 </a>
@@ -62,25 +60,25 @@
                         <li class="nav-item"><a href="~/Anasayfa/AnasayfaIndex" class="nav-link ">Anasayfa</a></li>
                         <li class="nav-item"><a href="~/Hakkimda/HakkimdaIndex" class="nav-link ">Hakkımda</a></li>
                         <li class="nav-item"><a href="~/Iletisim/IletisimIndex" class="nav-link ">İletİşİm</a></li>
-                        <li class="nav-item dropdown menu-s">
-                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">GİRİŞ/YENİ KAYIT<b class="caret"></b></a>
-                            <ul class="dropdown-menu megamenu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-12">
-                                           
-                                            <ul class="list-unstyled mb-3">
-                                                <li class="nav-item"><a href="~/Kullanici/GirisIndex" class="nav-link">Giriş</a></li>
-                                                <li class="nav-item"><a href="~/Kullanici/KullaniciKayitIndex" class="nav-link">Yeni Kayıt</a></li>
-                                               
-                                            </ul>
+                        @*<li class="nav-item dropdown menu-s">
+                                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">GİRİŞ/YENİ KAYIT<b class="caret"></b></a>
+                                <ul class="dropdown-menu megamenu">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-12">
+
+                                                <ul class="list-unstyled mb-3">
+                                                    <li class="nav-item"><a href="~/Kullanici/GirisIndex" class="nav-link">Giriş</a></li>
+                                                    <li class="nav-item"><a href="~/Kullanici/KullaniciKayitIndex" class="nav-link">Yeni Kayıt</a></li>
+
+                                                </ul>
+                                            </div>
+
                                         </div>
-                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    
+                                    </li>
+                                </ul>
+                            </li>*@
+
 
                     </ul>
                     <div class="navbar-buttons d-flex justify-content-end">
@@ -137,104 +135,140 @@
         </div>
     </header>
 
-    
-    @RenderBody()
-    <!--
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+            <div class="col-lg-8">
+
+                @RenderBody()
+
+            </div>
+
+            <div class="col-lg-3">
+                <!--
+    *** CategoryList ***
+    _________________________________________________________
+    -->
+                @*@RenderPage("~/Views/Anasayfa/CategoryList.cshtml")*@
+
+                <div class="card sidebar-menu mb-4">
+                    <div class="card-header">
+                        <h3 class="h4 panel-title">Kategoriler</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav flex-column nav-pills">
+                            @foreach (var kategori in Model.Item1)
+                            {
+                            <li><a href="~/Anasayfa/AnasayfaIndex/@kategori.CategoryId" class="nav-link"> @kategori.CategoryName</a></li>
+
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!--
     *** FOOTER ***
     _________________________________________________________
     -->
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Sayfalar</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
-                        <li><a href="~/Hakkimda/HakkimdaIndex">Hakkımda</a></li>
-                        <li><a href="~/Iletisim/IletisimIndex">İletişim</a></li>
-                        
-                    </ul>
-                   
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Sayfalar</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
+                            <li><a href="~/Hakkimda/HakkimdaIndex">Hakkımda</a></li>
+                            <li><a href="~/Iletisim/IletisimIndex">İletişim</a></li>
+
+                        </ul>
+
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Kategoriler</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="blog.html">Java Script</a></li>
+                            <li><a href="blog.html">HTML</a></li>
+                            <li><a href="blog.html">CSS</a></li>
+                            <li><a href="blog.html">C#</a></li>
+                        </ul>
+
+
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Kullanıcı paneli</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>
+                            <li><a href="~/Kullanici/KullaniciKayitIndex">Kayıt ol</a></li>
+                        </ul>
+                        <hr />
+                        <a href="~/Iletisim/IletisimIndex">İletişim</a>
+                        <hr class="d-block d-md-none">
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Haberdar olun</h4>
+                        @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control"><span class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary">Takip!</button>
+                                </span>
+                            </div>
+                            <!-- /input-group-->
+                        </form>
+                        <hr>
+                        <h4 class="mb-3">Stay in touch</h4>
+                        <p class="social">
+                            <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external"><i class="fa fa-envelope"></i></a>
+                        </p>
+                    </div>
+                    <!-- /.col-lg-3-->
                 </div>
-                <!-- /.col-lg-3-->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Kategoriler</h4>
-                    
-                    <ul class="list-unstyled">
-                        <li><a href="blog.html" >Java Script</a></li>
-                        <li><a href="blog.html" >HTML</a></li>
-                        <li><a href="blog.html" >CSS</a></li>
-                        <li><a href="blog.html" >C#</a></li>
-                    </ul>
-                    
-                   
-                </div>
-                <!-- /.col-lg-3-->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Kullanıcı paneli</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>
-                        <li><a href="~/Kullanici/KullaniciKayitIndex">Kayıt ol</a></li>
-                    </ul>
-                    <hr />
-                    <a href="~/Iletisim/IletisimIndex">İletişim</a>
-                    <hr class="d-block d-md-none">
-                </div>
-                <!-- /.col-lg-3-->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Haberdar olun</h4>
-                    @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control"><span class="input-group-append">
-                                <button type="button" class="btn btn-outline-secondary">Takip!</button>
-                            </span>
-                        </div>
-                        <!-- /input-group-->
-                    </form>
-                    <hr>
-                    <h4 class="mb-3">Stay in touch</h4>
-                    <p class="social">
-                    <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
-                    <a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
-                </div>
-                <!-- /.col-lg-3-->
+                <!-- /.row-->
             </div>
-            <!-- /.row-->
+            <!-- /.container-->
         </div>
-        <!-- /.container-->
-    </div>
-    <!-- /#footer-->
-    <!-- *** FOOTER END ***-->
-    <!--
+        <!-- /#footer-->
+        <!-- *** FOOTER END ***-->
+        <!--
     *** COPYRIGHT ***
     _________________________________________________________
     -->
-    <div id="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mb-2 mb-lg-0">
-                    <p class="text-center text-lg-left">©2024 Fazlı Şahiner</p>
-                </div>
-                <!--<div class="col-lg-6">
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                        <p class="text-center text-lg-left">©2024 Fazlı Şahiner</p>
+                    </div>
+                    <!--<div class="col-lg-6">
                     <p class="text-center text-lg-right">
                         Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>-->
-                        <!-- If you want to remove this backlink, pls purchase an Attribution-free License @@ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
+                    <!-- If you want to remove this backlink, pls purchase an Attribution-free License @@ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
                     <!--</p>
                 </div>-->
+                </div>
             </div>
         </div>
-    </div>
-    <!-- *** COPYRIGHT END ***-->
-    <!-- JavaScript files-->
-    <script src="/distribution/vendor/jquery/jquery.min.js"></script>
-    <script src="/distribution/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/distribution/vendor/jquery.cookie/jquery.cookie.js"></script>
-    <script src="/distribution/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="/distribution/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
-    <script src="/distribution/js/front.js"></script>
+        <!-- *** COPYRIGHT END ***-->
+        <!-- JavaScript files-->
+        <script src="/distribution/vendor/jquery/jquery.min.js"></script>
+        <script src="/distribution/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/distribution/vendor/jquery.cookie/jquery.cookie.js"></script>
+        <script src="/distribution/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <script src="/distribution/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+        <script src="/distribution/js/front.js"></script>
 </body>
 </html>

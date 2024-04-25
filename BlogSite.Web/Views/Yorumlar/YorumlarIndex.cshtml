@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "YorumlarIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Tuple<List<Categories>, List< Comments>>
+
+
+
+
+
+
+@if (@Model.Item2 != null)
+{
+    <ul>
+
+        @foreach (var comment in Model.Item2)
+        {
+            <li>
+                <p>comment.CreateDate</p>
+                <p>comment.Content</p>
+            </li>
+        }
+    </ul>
+}
+
+@else
+        {
+<p> @ViewBag.Message</p>
+        }
+

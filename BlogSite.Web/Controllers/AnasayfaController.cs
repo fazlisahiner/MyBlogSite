@@ -15,9 +15,32 @@ namespace BlogSite.Web.Controllers
         //}
 
         
-        public ActionResult AnasayfaIndex()
+
+        public ActionResult AnasayfaIndex(int? id=null) // burdaki soru işareti eğer parametre gelmezsenull kabul et demek için
         {
-            return View();
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
+
+
+            if (id==null)
+            {
+                var getAllArticles = db.Articles.ToList();
+                var getAllCategories = db.Categories.ToList();
+
+                return View(Tuple.Create(getAllCategories, getAllArticles));
+                //return View(getAllArticles);
+            }
+            else
+            {
+                var getArticleWithCategory = db.Articles.Where(g => g.CategoryId == id).ToList();
+                var getAllCategories = db.Categories.ToList();
+
+                return View(Tuple.Create(getAllCategories, getArticleWithCategory));
+               // return View(getArticleWithCategory);
+            }
+      
         }
+
+       
     }
 }

@@ -2349,6 +2349,8 @@
     <Compile Include="Controllers\HakkimdaController.cs" />
     <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
+    <Compile Include="Controllers\MakalelerController.cs" />
+    <Compile Include="Controllers\YorumlarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2748,6 +2750,8 @@
     <Content Include="Views\Iletisim\IletisimIndex.cshtml" />
     <Content Include="Views\Kullanici\KullaniciKayitIndex.cshtml" />
     <Content Include="Views\Kullanici\GirisIndex.cshtml" />
+    <Content Include="Views\Makaleler\MakaleDetayIndex.cshtml" />
+    <Content Include="Views\Yorumlar\YorumlarIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
