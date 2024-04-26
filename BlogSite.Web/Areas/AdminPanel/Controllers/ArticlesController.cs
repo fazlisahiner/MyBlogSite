@@ -66,7 +66,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
                         model.CategoryId = cat;
 
 
-                        model.UserId = 0; // bunu ayarlayacaz
+                        model.UserId = 1; // bunu ayarlayacaz
                         model.CreateDate = DateTime.Now;
                         model.Views = 0;
                         model.Likes = 0;

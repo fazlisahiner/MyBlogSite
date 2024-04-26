@@ -97,19 +97,33 @@
                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="customer-orders.html" method="post">
+                                        <form action="/Kullanici/GirisIndex" method="post">
                                             <div class="form-group">
-                                                <input id="email-modal" type="text" placeholder="email" class="form-control">
+                                                <label for="email">Email</label>
+                                                <input id="email" name="email" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <input id="password-modal" type="password" placeholder="şifre" class="form-control">
+                                                <label for="password">Şifre</label>
+                                                <input id="password" name="sifre" type="password" class="form-control">
                                             </div>
-                                            <p class="text-center">
-                                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
-                                            </p>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
+                                            </div>
+                                            @*<div class="form-group">
+                                                    <input id="email-modal" type="text" placeholder="email" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="password-modal" type="password" placeholder="şifre" class="form-control">
+                                                </div>
+                                                <p class="text-center">
+                                                    <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Giriş</button>
+                                                </p>*@
                                         </form>
+                                        <p class="text-center" style="color: red; font-size:20px; font-weight:bolder; justify-content:center">
+                                            @ViewBag.Message
+                                        </p>
                                         <p class="text-center text-muted">Henüz kayıt olmadınız mı?</p>
-                                        <p class="text-center text-muted"><a href="~/Kullanici/KullaniciKayitIndex"><strong>Kayıt ol</strong></a>! Bir dakikada kolayca kaydolun</p>
+                                        <p class="text-center text-muted"><a href="~/Kullanici/KullaniciKayitIndex"><strong>Kayıt ol!</strong></a> Bir dakikada kolayca kaydolun</p>
                                     </div>
                                 </div>
                             </div>
@@ -138,137 +152,137 @@
 
     <div class="row">
         <div class="col-lg-1"></div>
-            <div class="col-lg-8">
+        <div class="col-lg-8">
 
-                @RenderBody()
+            @RenderBody()
 
-            </div>
+        </div>
 
-            <div class="col-lg-3">
-                <!--
-    *** CategoryList ***
-    _________________________________________________________
-    -->
-                @*@RenderPage("~/Views/Anasayfa/CategoryList.cshtml")*@
+        <div class="col-lg-3">
+            <!--
+            *** CategoryList ***
+            _________________________________________________________
+            -->
+            @*@RenderPage("~/Views/Anasayfa/CategoryList.cshtml")*@
 
-                <div class="card sidebar-menu mb-4">
-                    <div class="card-header">
-                        <h3 class="h4 panel-title">Kategoriler</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul class="nav flex-column nav-pills">
-                            @foreach (var kategori in Model.Item1)
-                            {
+            <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                    <h3 class="h4 panel-title">Kategoriler</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav flex-column nav-pills">
+                        @foreach (var kategori in Model.Item1)
+                        {
                             <li><a href="~/Anasayfa/AnasayfaIndex/@kategori.CategoryId" class="nav-link"> @kategori.CategoryName</a></li>
 
-                            }
+                        }
 
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
-
             </div>
 
         </div>
 
+    </div>
 
-        <!--
+
+    <!--
     *** FOOTER ***
     _________________________________________________________
     -->
-        <div id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="mb-3">Sayfalar</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
-                            <li><a href="~/Hakkimda/HakkimdaIndex">Hakkımda</a></li>
-                            <li><a href="~/Iletisim/IletisimIndex">İletişim</a></li>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="mb-3">Sayfalar</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="~/Anasayfa/AnasayfaIndex">Anasayfa</a></li>
+                        <li><a href="~/Hakkimda/HakkimdaIndex">Hakkımda</a></li>
+                        <li><a href="~/Iletisim/IletisimIndex">İletişim</a></li>
 
-                        </ul>
+                    </ul>
 
-                    </div>
-                    <!-- /.col-lg-3-->
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="mb-3">Kategoriler</h4>
-
-                        <ul class="list-unstyled">
-                            <li><a href="blog.html">Java Script</a></li>
-                            <li><a href="blog.html">HTML</a></li>
-                            <li><a href="blog.html">CSS</a></li>
-                            <li><a href="blog.html">C#</a></li>
-                        </ul>
-
-
-                    </div>
-                    <!-- /.col-lg-3-->
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="mb-3">Kullanıcı paneli</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>
-                            <li><a href="~/Kullanici/KullaniciKayitIndex">Kayıt ol</a></li>
-                        </ul>
-                        <hr />
-                        <a href="~/Iletisim/IletisimIndex">İletişim</a>
-                        <hr class="d-block d-md-none">
-                    </div>
-                    <!-- /.col-lg-3-->
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="mb-3">Haberdar olun</h4>
-                        @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
-                        <form>
-                            <div class="input-group">
-                                <input type="text" class="form-control"><span class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary">Takip!</button>
-                                </span>
-                            </div>
-                            <!-- /input-group-->
-                        </form>
-                        <hr>
-                        <h4 class="mb-3">Stay in touch</h4>
-                        <p class="social">
-                            <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="email external"><i class="fa fa-envelope"></i></a>
-                        </p>
-                    </div>
-                    <!-- /.col-lg-3-->
                 </div>
-                <!-- /.row-->
+                <!-- /.col-lg-3-->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="mb-3">Kategoriler</h4>
+
+                    <ul class="list-unstyled">
+                        <li><a href="blog.html">Java Script</a></li>
+                        <li><a href="blog.html">HTML</a></li>
+                        <li><a href="blog.html">CSS</a></li>
+                        <li><a href="blog.html">C#</a></li>
+                    </ul>
+
+
+                </div>
+                <!-- /.col-lg-3-->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="mb-3">Kullanıcı paneli</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a></li>
+                        <li><a href="~/Kullanici/KullaniciKayitIndex">Kayıt ol</a></li>
+                    </ul>
+                    <hr />
+                    <a href="~/Iletisim/IletisimIndex">İletişim</a>
+                    <hr class="d-block d-md-none">
+                </div>
+                <!-- /.col-lg-3-->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="mb-3">Haberdar olun</h4>
+                    @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control"><span class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary">Takip!</button>
+                            </span>
+                        </div>
+                        <!-- /input-group-->
+                    </form>
+                    <hr>
+                    <h4 class="mb-3">Stay in touch</h4>
+                    <p class="social">
+                        <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="email external"><i class="fa fa-envelope"></i></a>
+                    </p>
+                </div>
+                <!-- /.col-lg-3-->
             </div>
-            <!-- /.container-->
+            <!-- /.row-->
         </div>
-        <!-- /#footer-->
-        <!-- *** FOOTER END ***-->
-        <!--
+        <!-- /.container-->
+    </div>
+    <!-- /#footer-->
+    <!-- *** FOOTER END ***-->
+    <!--
     *** COPYRIGHT ***
     _________________________________________________________
     -->
-        <div id="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-2 mb-lg-0">
-                        <p class="text-center text-lg-left">©2024 Fazlı Şahiner</p>
-                    </div>
-                    <!--<div class="col-lg-6">
-                    <p class="text-center text-lg-right">
-                        Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>-->
-                    <!-- If you want to remove this backlink, pls purchase an Attribution-free License @@ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
-                    <!--</p>
-                </div>-->
+    <div id="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-2 mb-lg-0">
+                    <p class="text-center text-lg-left">©2024 Fazlı Şahiner</p>
                 </div>
+                <!--<div class="col-lg-6">
+                <p class="text-center text-lg-right">
+                    Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>-->
+                <!-- If you want to remove this backlink, pls purchase an Attribution-free License @@ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
+                <!--</p>
+                </div>-->
             </div>
         </div>
-        <!-- *** COPYRIGHT END ***-->
-        <!-- JavaScript files-->
-        <script src="/distribution/vendor/jquery/jquery.min.js"></script>
-        <script src="/distribution/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/distribution/vendor/jquery.cookie/jquery.cookie.js"></script>
-        <script src="/distribution/vendor/owl.carousel/owl.carousel.min.js"></script>
-        <script src="/distribution/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
-        <script src="/distribution/js/front.js"></script>
+    </div>
+    <!-- *** COPYRIGHT END ***-->
+    <!-- JavaScript files-->
+    <script src="/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="/distribution/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/distribution/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="/distribution/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/distribution/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+    <script src="/distribution/js/front.js"></script>
 </body>
 </html>

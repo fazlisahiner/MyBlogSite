@@ -16,7 +16,7 @@ namespace BlogSite.Web.Controllers
             return View();
         }
 
-        MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+        //MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
 
         //public ActionResult GirisIndex(string kullaniciAdi,string sifre)
         //{
@@ -41,8 +41,13 @@ namespace BlogSite.Web.Controllers
 
         public ActionResult GirisIndex()
         {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
+            var getAllArticles = db.Articles.ToList();
+            var getAllCategories = db.Categories.ToList();
+
+            return View(Tuple.Create(getAllCategories, getAllArticles));
             
-                return View();
             
 
         }
@@ -50,6 +55,10 @@ namespace BlogSite.Web.Controllers
         [HttpPost]
         public ActionResult GirisIndex(FormCollection fc)
         {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
+            var getAllArticles = db.Articles.ToList();
+            var getAllCategories = db.Categories.ToList();
             string email = fc["email"];
             string sifre = fc["sifre"];
 
@@ -67,7 +76,7 @@ namespace BlogSite.Web.Controllers
                ViewBag.Message = "Kullanıcı adı veya şifre hatalı! ";
                 
                 Thread.Sleep(3000);
-                return View();
+                return View(Tuple.Create(getAllCategories, getAllArticles));
             }
             //Login 
 
@@ -77,7 +86,12 @@ namespace BlogSite.Web.Controllers
 
         public ActionResult KullaniciKayitIndex()
         {
-            return View();
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
+            var getAllArticles = db.Articles.ToList();
+            var getAllCategories = db.Categories.ToList();
+
+            return View(Tuple.Create(getAllCategories, getAllArticles));
         }
 
 
@@ -88,10 +102,7 @@ namespace BlogSite.Web.Controllers
             // bunu yazıp alt+shift+f10
 
             string email = form["emailInput"].Trim(); 
-            
 
-            
-     
             var getirEmail = db.Users.Where(k => k.EMail == email ).FirstOrDefault();
 
 
@@ -116,16 +127,14 @@ namespace BlogSite.Web.Controllers
                 Thread.Sleep(3000);
             }
 
+            ViewBag.CategoryList = db.Categories.ToList();
+            var getAllArticles = db.Articles.ToList();
+            var getAllCategories = db.Categories.ToList();
 
+            return View(Tuple.Create(getAllCategories, getAllArticles));
 
-
-
-            //db.Users.Add(model);
-            //db.SaveChanges();
-
-            return View();
+   
         }
-
 
     }
 

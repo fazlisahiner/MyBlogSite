@@ -4,29 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model Tuple<List<Categories>, List< Comments>>
+@model Tuple<List<Categories>, List<Comments>, List<Users>>
 
 
 
+<div id="all">
+    <div id="content">
+        <div class="container">
+
+
+            @if (@Model.Item2.Count != 0)
+            {
+                <ul>
+
+                    @foreach (var comment in Model.Item2)
+                    {
+                        <li>
+
+                            @foreach (var user in Model.Item3)
+                            {
+                                if (user.UsersId == comment.UserId)
+                                {
+                                    <h4> @user.UserName</h4>
+                                    break;
+                                }
+                            }
+
+                            <p>@comment.CreateDate</p>
+                            <p>@comment.Content</p>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p> Bu makaleye hiç yorum yapılmadı</p>
+            }
 
 
 
-@if (@Model.Item2 != null)
-{
-    <ul>
-
-        @foreach (var comment in Model.Item2)
-        {
-            <li>
-                <p>comment.CreateDate</p>
-                <p>comment.Content</p>
-            </li>
-        }
-    </ul>
-}
-
-@else
-        {
-<p> @ViewBag.Message</p>
-        }
-
+        </div>
+    </div>
+</div>

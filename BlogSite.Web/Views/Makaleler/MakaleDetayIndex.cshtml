@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*@model Articles*@
-@model Tuple<List<Categories>, Articles>
+
+@model Tuple<List<Categories>, Articles, List<Comments>, List<Users>>
 
 <div id="all">
     <div id="content">
@@ -13,46 +13,79 @@
             <div class="row">
                 <div class="col-lg-12">
                     <!-- breadcrumb-->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">Blog post</li>
-                        </ol>
-                    </nav>
+                    @*<nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">Blog post</li>
+                            </ol>
+                        </nav>*@
                 </div>
-                <div id="blog-post" class="col-lg-9">
+                <div id="blog-post" class="col-lg-12">
                     <div class="box">
-                        <h1>Fashion now</h1>
-                        <p class="author-date">By <a href="#">John Slim</a> |  June 20, 2013</p>
-                        <p class="lead">This is the lead paragraph of the article. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.</p>
+
+
+
+
+
+                        <p class="author-date">
+                            By <a href="#">
+                                @foreach (var u in Model.Item4)
+                                {
+                                    if (u.UsersId == Model.Item2.UserId)
+                                    {
+                                        @u.UserName
+                                    }
+
+                                }
+                            </a> |  @Model.Item2.CreateDate
+                        </p>
+
                         <div id="post-content">
                             <p>
-                                <strong>Pellentesque habitant morbi tristique</strong>
-
+                                <h2>@Model.Item2.Title</h2>
+                            </p>
+                            <p>
                                 @Model.Item2.Content
+                            </p>
 
-                                <h2>Header Level 2</h2>
-                                <ol>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                                    <li>Aliquam tincidunt mauris eu risus.</li>
-                                </ol>
-                                <blockquote class="blockquote">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
-                                </blockquote>
-                                <h3>Header Level 3</h3>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                            <ul>
-                                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                                <li>Aliquam tincidunt mauris eu risus.</li>
-                            </ul>
-                            <p><img src="img/blog.jpg" alt="Example blog post alt" class="img-fluid"></p>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
                         </div>
                         <!-- /#post-content-->
                         <div id="comments">
-                            <h4>2 comments</h4>
-                            <div class="row comment">
+                            <h4> Yorumlar</h4>
+
+
+
+                            @foreach (var comment in Model.Item3)
+                            {
+
+
+                                <div class="row comment">
+                                    <div class="col-md-3 col-lg-2 text-center text-md-center">
+                                        <p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+
+                                        @foreach (var u in Model.Item4)
+                                        {
+                                            if (u.UsersId == comment.UserId)
+                                            {
+                                                <h5>
+                                                    @u.UserName
+                                                </h5>
+                                                break;
+                                            }
+
+                                        }
+
+                                        <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate</p>
+                                        <p>@comment.Content</p>
+                                        <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
+                                    </div>
+                                </div>
+
+                            }
+                            <!--<div class="row comment">
                                 <div class="col-md-3 col-lg-2 text-center text-md-center">
                                     <p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>
                                 </div>
@@ -62,9 +95,9 @@
                                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
                                 </div>
-                            </div>
+                            </div>-->
                             <!-- /.comment-->
-                            <div class="row comment last">
+                            <!--<div class="row comment last">
                                 <div class="col-md-3 col-lg-2 text-center text-md-center">
                                     <p><img src="img/blog-avatar.jpg" alt="" class="img-fluid rounded-circle"></p>
                                 </div>
@@ -74,7 +107,7 @@
                                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
                                 </div>
-                            </div>
+                            </div>-->
                             <!-- /.comment-->
                         </div>
                         <!-- /#comments-->
@@ -117,28 +150,7 @@
                     <!-- /.box-->
                 </div>
                 <!-- /#blog-post-->
-                <div class="col-lg-3">
-                    <!--
-                    *** BLOG MENU ***
-                    _________________________________________________________
-                    -->
-                    <div class="card sidebar-menu mb-4">
-                        <div class="card-header">
-                            <h3 class="h4 panel-title">Blog</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="nav flex-column nav-pills">
-                                <li><a href="blog.html" class="nav-link">About us</a></li>
-                                <li><a href="blog.html" class="nav-link active">Fashion</a></li>
-                                <li><a href="blog.html" class="nav-link">News and gossip</a></li>
-                                <li><a href="blog.html" class="nav-link">Design</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-3-->
-                    <!-- *** BLOG MENU END ***-->
-                    <div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
-                </div>
+
             </div>
         </div>
     </div>

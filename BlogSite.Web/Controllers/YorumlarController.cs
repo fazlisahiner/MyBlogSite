@@ -22,16 +22,17 @@ namespace BlogSite.Web.Controllers
         {
             var getComment = db.Comments.Where(k => k.ArticleId == id).ToList();
             var getAllCategories = db.Categories.ToList();
+            var users = db.Users.ToList();
 
             if (getComment != null)
             {
-                return View(Tuple.Create(getAllCategories, getComment));
+                return View(Tuple.Create(getAllCategories, getComment, users));
 
             }
             else
             {
-                ViewBag.Message = "Bu makaleye henüz yorum yapılmadı. ";
-                return View(Tuple.Create(getAllCategories, getComment));
+                //ViewBag.Message = "Bu makaleye henüz yorum yapılmadı. ";
+                return View(Tuple.Create(getAllCategories, getComment, users));
             }
             
 
