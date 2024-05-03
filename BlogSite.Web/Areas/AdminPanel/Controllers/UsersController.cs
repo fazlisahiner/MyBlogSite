@@ -83,7 +83,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
                                 model.RoleId = roleId;
                                 model.UserPassword = form["sifre"];
                                 model.IsActive = true;
-                                model.CreateDate = DateTime.Now;
+                                model.CreateDate = DateTime.Today;
 
 
 

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model Tuple<List<Categories>, List<Articles>, List<Users>>
+@model Tuple<List<Categories>, List<Articles>, List<Users>, List<Comments>>
 
 @*@foreach (var makale in Model.Item2)
     {*@
@@ -51,19 +51,40 @@
                                 By <a href="#">
                                     @foreach (var user in Model.Item3)
                                     {
+
                                         if (user.UsersId == makale.UserId)
                                         {
                                             @user.UserName
                                         }
                                     }
 
+                                </a>
 
 
-                                </a> in <a href="~/Hakkimda/HakkimdaIndex">Fazlı Şahiner</a>
                             </p>
                             <hr>
-                            <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a><a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a></p>
-                            <div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>
+                            <p class="date-comments">
+                                <a href="#"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a>
+                                <i class="fa fa-comment-o">
+
+                                    @{int sayac = 0; }
+                                    @foreach (var com in Model.Item4)
+                                    {
+                                        if (com.ArticleId == makale.ArticleId)
+                                        {
+                                            sayac += 1;
+
+                                        }
+                                    }
+
+                                
+                                  @sayac
+                                </i> Yorum
+
+                                @*<a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a>*@
+                            </p>
+
+                            @*<div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>*@
 
                             @if (makale.Content.ToString().Length > 250)
                             {

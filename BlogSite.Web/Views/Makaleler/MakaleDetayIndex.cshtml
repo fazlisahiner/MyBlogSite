@@ -26,10 +26,11 @@
 
 
 
+                        <input type="hidden" id="articleId" name="name" value="@Model.Item2.ArticleId" />
 
 
                         <p class="author-date">
-                            By <a href="#">
+                            Yazan <a href="#">
                                 @foreach (var u in Model.Item4)
                                 {
                                     if (u.UsersId == Model.Item2.UserId)
@@ -55,104 +56,165 @@
                             <h4> Yorumlar</h4>
 
 
+                            <div id="commentline">
+                                @foreach (var comment in Model.Item3)
+                                {
 
-                            @foreach (var comment in Model.Item3)
-                            {
 
+                                    <div class="row comment">
+                                        <div class="col-md-3 col-lg-2 text-center text-md-center">
+                                            @*<p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>*@
+                                        </div>
+                                        <div class="col-md-9 col-lg-10">
 
-                                <div class="row comment">
-                                    <div class="col-md-3 col-lg-2 text-center text-md-center">
-                                        <p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>
-                                    </div>
-                                    <div class="col-md-9 col-lg-10">
-
-                                        @foreach (var u in Model.Item4)
-                                        {
-                                            if (u.UsersId == comment.UserId)
+                                            @foreach (var u in Model.Item4)
                                             {
-                                                <h5>
-                                                    @u.UserName
-                                                </h5>
-                                                break;
+                                                if (u.UsersId == comment.UserId)
+                                                {
+
+                                                    <h5>
+                                                        @u.UserName
+                                                    </h5>
+                                                    break;
+                                                }
+
                                             }
 
-                                        }
+                                            <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate</p>
+                                            <p>@comment.Content</p>
+                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
+                                        </div>
+                                    </div>
 
-                                        <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate</p>
-                                        <p>@comment.Content</p>
-                                        <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
-                                    </div>
-                                </div>
+                                }
 
-                            }
-                            <!--<div class="row comment">
-                                <div class="col-md-3 col-lg-2 text-center text-md-center">
-                                    <p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>
-                                </div>
-                                <div class="col-md-9 col-lg-10">
-                                    <h5>Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
-                                </div>
-                            </div>-->
-                            <!-- /.comment-->
-                            <!--<div class="row comment last">
-                                <div class="col-md-3 col-lg-2 text-center text-md-center">
-                                    <p><img src="img/blog-avatar.jpg" alt="" class="img-fluid rounded-circle"></p>
-                                </div>
-                                <div class="col-md-9 col-lg-10">
-                                    <h5>Louise Armero</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
-                                </div>
-                            </div>-->
-                            <!-- /.comment-->
+                            </div>
+                            <!-- /#comments-->
+                            <div id="comment-form">
+                                <h4>Yorum yap</h4>
+                                <form id="yorumYap" method="post">
+                                    @*<div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Kullanıcı adı <span class="required">*</span></label>
+                                                    <input id="name" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email <span class="required">*</span></label>
+                                                <input id="email" type="text" class="form-control">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="comment">Yorum <span class="required">*</span></label>
+                                                <textarea id="comment" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" onclick="YorumEkle()" class="btn btn-primary"><i class="fa fa-comment-o"></i> Yorum ekle</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            @ViewBag.Message
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /#comment-form-->
                         </div>
-                        <!-- /#comments-->
-                        <div id="comment-form">
-                            <h4>Leave comment</h4>
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Name <span class="required">*</span></label>
-                                            <input id="name" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="email">Email <span class="required">*</span></label>
-                                            <input id="email" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span></label>
-                                            <textarea id="comment" rows="4" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /#comment-form-->
+                        <!-- /.box-->
                     </div>
-                    <!-- /.box-->
-                </div>
-                <!-- /#blog-post-->
+                    <!-- /#blog-post-->
 
+                </div>
             </div>
         </div>
     </div>
-</div>
+    @*<script src="~/distribution/js/map.js"></script>
+        <script src="~/distribution/js/front.js"></script>
+        <script src="~/distribution/vendor/jquery/jquery.js"></script>
+        <script src="~/distribution/vendor/jquery/jquery.min.js"></script>
+        <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
+        <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>*@
 
+    <script>
+
+        //$(document).ready(function () {
+        //    $(`#yorumYap`).submit(function (e)
+        //    {
+       
+        /*e.preventDefault();
+        var id =;
+        /*var yorumYapan = $('#name').val();*/
+        /*var email = $('#email').val();
+        var yorumMetin = $('#comment').val();
+        var userId = -1;
+
+        foreach(var user in )
+       {
+            if (user.EMail == email)
+            {
+            userId = user.UsersId;
+            break;
+            }
+        };
+        */
+        function YorumEkle() {
+            var articleId = document.getElementById("articleId").value;
+            var yoruMetin = document.getElementById("comment").value;
+            debugger;
+            $.ajax
+                ({
+                    url: "/Makaleler/YorumEkle",
+                    type: 'POST',
+                    //data: { id: id, userId: userId, yorumMetin: yorumMetin },
+                    data: { "articleid": articleId, "yorumMetin": yoruMetin },
+                    success: function (result) {
+                        debugger;
+                        if (result != null) {
+                            var ekleYorumSatiri = document.getElementById("commentline");
+                            ekleYorumSatiri.append("<div class='row comment'><div class='col-md-3 col-lg-2 text-center text-md-center'></div><div class='col-md-9 col-lg-10'><h5>" + result.UserName + "</h5><p class='posted'><i class='fa fa-clock-o'></i>CreateDate</p><p>Yorum</p><p class='reply'><a href='#'><i class='fa fa-reply'></i> Reply</a></p></div></div>");
+                        }
+
+                        if (result.success) {
+                            alert('Yorum eklendi');
+                            Thread.Sleep(3000);
+
+                        }
+
+                    },
+                    Error: function () {
+
+                        debugger;
+                    }
+
+                });
+        }
+
+        //   })
+        //});
+
+
+
+
+    </script>
+
+
+    @*foreach(var user in @Model.Item4)
+        {
+        if (user.EMail == email) {
+        userId = user.UsersId;
+        break;
+        }
+        };*@

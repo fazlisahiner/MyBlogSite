@@ -47,8 +47,8 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
                 model.RoleName = fc["ad"].Trim();
                 model.Description = fc["acikla"].Trim();
                 model.Permissions = fc["yetki"].Trim();
-                model.CreateDate = DateTime.Now;
-                model.UpdateDate = DateTime.Now;
+                model.CreateDate = DateTime.Today;
+                model.UpdateDate = DateTime.Today;
 
                 db.Roles.Add(model);
                 db.SaveChanges();

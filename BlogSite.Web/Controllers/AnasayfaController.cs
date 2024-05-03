@@ -27,8 +27,9 @@ namespace BlogSite.Web.Controllers
                 var getAllArticles = db.Articles.ToList();
                 var getAllCategories = db.Categories.ToList();
                 var allUsers = db.Users.ToList();
-
-                return View(Tuple.Create(getAllCategories, getAllArticles, allUsers));
+                var comment = db.Comments.ToList();
+                
+                return View(Tuple.Create(getAllCategories, getAllArticles, allUsers, comment));
                 //return View(getAllArticles);
             }
             else
@@ -36,8 +37,10 @@ namespace BlogSite.Web.Controllers
                 var getArticleWithCategory = db.Articles.Where(g => g.CategoryId == id).ToList();
                 var getAllCategories = db.Categories.ToList();
                 var allUsers = db.Users.ToList();
+                var comment = db.Comments.ToList();
+              
 
-                return View(Tuple.Create(getAllCategories, getArticleWithCategory, allUsers));
+                return View(Tuple.Create(getAllCategories, getArticleWithCategory, allUsers, comment));
                // return View(getArticleWithCategory);
             }
       

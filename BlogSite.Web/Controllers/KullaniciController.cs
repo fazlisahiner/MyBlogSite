@@ -119,7 +119,7 @@ namespace BlogSite.Web.Controllers
                 model.UserPassword = form["sifreInput"].Trim();
                 model.IsActive = true;
                 model.RoleId = 0;
-                model.CreateDate = DateTime.Now;
+                model.CreateDate = DateTime.Today;
 
                 db.Users.Add(model);
                 db.SaveChanges();

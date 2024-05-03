@@ -51,8 +51,8 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
 
                     model.ArticleId = id;
                     model.Content = form["yorum"];
-                    model.CreateDate = DateTime.Now;
-                    model.UpdateDate= DateTime.Now;
+                    model.CreateDate = DateTime.Today;
+                    model.UpdateDate= DateTime.Today;
                     model.UserId = 0; // bunu ayarlayacaz
 
                     db.Comments.Add(model);
