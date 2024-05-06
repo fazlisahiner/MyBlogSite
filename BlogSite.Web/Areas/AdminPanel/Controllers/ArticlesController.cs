@@ -47,9 +47,9 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             }
             else
             {
-                string gelenMakale = Server.HtmlEncode(form["icerik"]);
-                
+                //string gelenMakale = HttpUtility.HtmlEncode(form["icerik"]);
 
+                string gelenMakale = form["icerik"];
 
 
                 if ( gelenMakale.Trim() == "" ) 

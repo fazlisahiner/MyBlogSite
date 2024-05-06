@@ -45,68 +45,69 @@
 
 
                         <!-- post        -->
-                        <div class="post">
-                            <h2><a href="post.html">@makale.Title</a></h2>
-                            <p class="author-category">
-                                By <a href="#">
-                                    @foreach (var user in Model.Item3)
+                    <div class="post">
+                        <h2><a href="post.html">@makale.Title</a></h2>
+                        <p class="author-category">
+                            By <a href="#">
+                                @foreach (var user in Model.Item3)
+                                {
+
+                                    if (user.UsersId == makale.UserId)
                                     {
-
-                                        if (user.UsersId == makale.UserId)
-                                        {
-                                            @user.UserName
-                                        }
+                                        @user.UserName
                                     }
+                                }
 
-                                </a>
+                            </a>
 
 
-                            </p>
-                            <hr>
-                            <p class="date-comments">
-                                <a href="#"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a>
-                                <i class="fa fa-comment-o">
+                        </p>
+                        <hr>
+                        <p class="date-comments">
+                            <a href="#"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a>
+                            <i class="fa fa-comment-o">
 
-                                    @{int sayac = 0; }
-                                    @foreach (var com in Model.Item4)
+                                @{int sayac = 0; }
+                                @foreach (var com in Model.Item4)
+                                {
+                                    if (com.ArticleId == makale.ArticleId)
                                     {
-                                        if (com.ArticleId == makale.ArticleId)
-                                        {
-                                            sayac += 1;
+                                        sayac += 1;
 
-                                        }
                                     }
-
-                                
-                                  @sayac
-                                </i> Yorum
-
-                                @*<a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a>*@
-                            </p>
-
-                            @*<div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>*@
-
-                            @if (makale.Content.ToString().Length > 250)
-                            {
-                                <p class="intro"> @makale.Content.ToString().Substring(0, 250) ... </p>
-                                <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
-                            }
-                            else
-                            {
-                                <p class="intro"> @makale.Content </p>
-                            }
+                                }
 
 
+                                @sayac
+                            </i> Yorum
+
+                            @*<a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a>*@
+                        </p>
+
+                        @*<div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>*@
+
+                        @if (makale.Content.ToString().Length > 250)
+                        {
+                            <p class="intro"> @Html.Raw(makale.Content.ToString().Substring(0,500)) ... </p><br />
+                            <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
+                        }
+                        else
+                        {
+                            <p class="intro"> @Html.Raw(makale.Content) </p>
+                            <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Yorum yap</a></p>
+                        }
 
 
 
-                        </div>
+
+
+                    </div>
 
                     }
                     <!-- post        -->
                     <div class="pager d-flex justify-content-between">
                         <div class="previous"><a href="#" class="btn btn-outline-primary">← Öncekİ</a></div>
-                        <div class="next disabled"><a href="#" class="btn btn-outline-secondary disabled">Sonrakİ →        </a></div>
+                        <div class="next"><a href="#" class="btn btn-outline-secondary">Sonrakİ →</a></div>
                     </div>
                 </div>
                 <!-- /.col-lg-9-->
@@ -133,7 +134,7 @@
                 </div>-->
                 @*bu kısmı layouta aldım*@
                 <!-- /.col-lg-3-->
-                <!-- *** BLOG MENU END ***-->-->
+                <!-- *** BLOG MENU END ***-->
                 <!--@*<div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>*@
                 </div>-->
             </div>

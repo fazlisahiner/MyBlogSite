@@ -11,7 +11,7 @@
     <div id="content">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-11">
                     <!-- breadcrumb-->
                     @*<nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -21,7 +21,7 @@
                             </ol>
                         </nav>*@
                 </div>
-                <div id="blog-post" class="col-lg-12">
+                <div id="blog-post" class="col-lg-11">
                     <div class="box">
 
 
@@ -36,6 +36,7 @@
                                     if (u.UsersId == Model.Item2.UserId)
                                     {
                                         @u.UserName
+                                        
                                     }
 
                                 }
@@ -47,7 +48,7 @@
                                 <h2>@Model.Item2.Title</h2>
                             </p>
                             <p>
-                                @Model.Item2.Content
+                                @Html.Raw( Model.Item2.Content)
                             </p>
 
                         </div>
@@ -87,7 +88,7 @@
                                     </div>
 
                                 }
-
+                            
                             </div>
                             <!-- /#comments-->
                             <div id="comment-form">
@@ -105,14 +106,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="email">Email <span class="required">*</span></label>
-                                                <input id="email" type="text" class="form-control">
-
+                                                <input id="gelenMailAdresi" name="email" type="text" class="form-control" />
+                                              
+                                                
 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-11">
                                             <div class="form-group">
                                                 <label for="comment">Yorum <span class="required">*</span></label>
                                                 <textarea id="comment" rows="4" class="form-control"></textarea>
@@ -127,6 +129,7 @@
                                     <div class="row">
                                         <div class="col-md-12 text-right">
                                             @ViewBag.Message
+                                            @*<input type="hidden" id="uyariMessage" name="name" value="@ViewBag.Message" />*@
                                         </div>
                                     </div>
                                 </form>
@@ -141,6 +144,7 @@
             </div>
         </div>
     </div>
+    </div>
     @*<script src="~/distribution/js/map.js"></script>
         <script src="~/distribution/js/front.js"></script>
         <script src="~/distribution/vendor/jquery/jquery.js"></script>
@@ -148,55 +152,43 @@
         <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
         <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>*@
 
-    <script>
+<script>
 
-        //$(document).ready(function () {
-        //    $(`#yorumYap`).submit(function (e)
-        //    {
-       
-        /*e.preventDefault();
-        var id =;
-        /*var yorumYapan = $('#name').val();*/
-        /*var email = $('#email').val();
-        var yorumMetin = $('#comment').val();
-        var userId = -1;
 
-        foreach(var user in )
-       {
-            if (user.EMail == email)
-            {
-            userId = user.UsersId;
-            break;
-            }
-        };
-        */
         function YorumEkle() {
             var articleId = document.getElementById("articleId").value;
             var yoruMetin = document.getElementById("comment").value;
-            debugger;
+            var email = document.getElementById("gelenMailAdresi").value;
+            
+
+
+
+
+            //debugger;
             $.ajax
                 ({
                     url: "/Makaleler/YorumEkle",
                     type: 'POST',
                     //data: { id: id, userId: userId, yorumMetin: yorumMetin },
-                    data: { "articleid": articleId, "yorumMetin": yoruMetin },
+                    data: { "articleid": articleId, "yorumMetin": yoruMetin, "email": email },
                     success: function (result) {
                         debugger;
                         if (result != null) {
                             var ekleYorumSatiri = document.getElementById("commentline");
-                            ekleYorumSatiri.append("<div class='row comment'><div class='col-md-3 col-lg-2 text-center text-md-center'></div><div class='col-md-9 col-lg-10'><h5>" + result.UserName + "</h5><p class='posted'><i class='fa fa-clock-o'></i>CreateDate</p><p>Yorum</p><p class='reply'><a href='#'><i class='fa fa-reply'></i> Reply</a></p></div></div>");
-                        }
-
-                        if (result.success) {
+                            ekleYorumSatiri.append("<div class='row comment'><div class='col-md-3 col-lg-2 text-center text-md-center'></div><div class='col-md-9 col-lg-10'><h5>" + result.UserName + "</h5><p class='posted'><i class='fa fa-clock-o'></i>" + result.CommentDateTime + "</p><p>" + result.CommentContent + "</p><p class='reply'><a href='#'><i class='fa fa-reply'></i> Reply</a></p></div></div>");
                             alert('Yorum eklendi');
-                            Thread.Sleep(3000);
-
                         }
+                        else {
+                            alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
+                        }
+                        
 
                     },
-                    Error: function () {
-
-                        debugger;
+                    Error: function (result) {
+                        if (result != null) {
+                            alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
+                        }
+                       // debugger;
                     }
 
                 });
@@ -208,13 +200,6 @@
 
 
 
-    </script>
+</script>
 
 
-    @*foreach(var user in @Model.Item4)
-        {
-        if (user.EMail == email) {
-        userId = user.UsersId;
-        break;
-        }
-        };*@

@@ -55,8 +55,8 @@
                                 <td>
                                     @item.Title
                                 </td>
-                                <td>@item.Content</td>
-                                <td>@item.CreateDate</td>
+                                <td>@Html.Raw(item.Content)</td>
+                                <td>@item.CreateDate.Date </td>
                                 <td>X</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
