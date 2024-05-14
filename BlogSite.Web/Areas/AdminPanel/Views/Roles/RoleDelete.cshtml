@@ -1,0 +1,77 @@
+﻿@model BlogSite.Web.Roles
+
+@{
+    ViewBag.Title = "RoleDelete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h3 class="card-title">Rol Sil</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <h3>Silmek istediğinizden emin misiniz?</h3>
+                <div>
+                    <h4>Roles</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.RoleName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.RoleName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Permissions)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Permissions)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdateDate)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                            @Html.ActionLink("Back to List", "RolesIndex")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

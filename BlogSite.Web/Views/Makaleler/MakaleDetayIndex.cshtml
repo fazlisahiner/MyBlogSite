@@ -1,11 +1,21 @@
 ﻿
+<script src="~/distribution/js/map.js"></script>
+<script src="~/distribution/js/front.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.min.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
+
 @{
     ViewBag.Title = "MakaleDetayIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@model Tuple<List<Categories>, Articles, List<Comments>, List<Users>>
+@model Tuple<Articles, List<Comments>, List<Users>, List<CommentResponse>>
+
+
+
 
 <div id="all">
     <div id="content">
@@ -26,29 +36,29 @@
 
 
 
-                        <input type="hidden" id="articleId" name="name" value="@Model.Item2.ArticleId" />
+                        <input type="hidden" id="articleId" name="name" value="@Model.Item1.ArticleId" />
 
 
                         <p class="author-date">
                             Yazan <a href="#">
-                                @foreach (var u in Model.Item4)
+                                @foreach (var u in Model.Item3)
                                 {
-                                    if (u.UsersId == Model.Item2.UserId)
+                                    if (u.UsersId == Model.Item1.UserId)
                                     {
                                         @u.UserName
-                                        
+
                                     }
 
                                 }
-                            </a> |  @Model.Item2.CreateDate
+                            </a> |  @Model.Item1.CreateDate
                         </p>
 
                         <div id="post-content">
                             <p>
-                                <h2>@Model.Item2.Title</h2>
+                                <h2>@Model.Item1.Title</h2>
                             </p>
                             <p>
-                                @Html.Raw( Model.Item2.Content)
+                                @Html.Raw(Model.Item1.Content)
                             </p>
 
                         </div>
@@ -56,19 +66,19 @@
                         <div id="comments">
                             <h4> Yorumlar</h4>
 
-
+                            @*@{var yorumNo = 1; }*@
                             <div id="commentline">
-                                @foreach (var comment in Model.Item3)
+                                @foreach (var comment in Model.Item2)
                                 {
 
-
+                                    <input type="hidden" id="commentId" name="name" value="@comment.CommetId" />
                                     <div class="row comment">
-                                        <div class="col-md-3 col-lg-2 text-center text-md-center">
+                                        <div class="col-md-1 col-lg-1 text-center text-md-center">
                                             @*<p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>*@
                                         </div>
                                         <div class="col-md-9 col-lg-10">
 
-                                            @foreach (var u in Model.Item4)
+                                            @foreach (var u in Model.Item3)
                                             {
                                                 if (u.UsersId == comment.UserId)
                                                 {
@@ -82,33 +92,83 @@
                                             }
 
                                             <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate</p>
-                                            <p>@comment.Content</p>
-                                            <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
+                                            <p> @Html.Raw(comment.Content) </p>
+
+                                            @*yorumlara cevap vermek için aşağıdaki kod*@
+
+                                            <div id="commentResponse">
+
+                                                <div class="row">
+                                                    @foreach (var res in Model.Item4)
+                                                    {
+                                                        if (res.CommentId == comment.CommetId)
+                                                        {<div class="col-1"></div>
+                                                         <div class="col-10">
+                                                             @foreach (var user in Model.Item3)
+                                                             {
+                                                                 if (user.UsersId == res.UserId)
+                                                                 {<h5>
+                                                                         @user.UserName
+                                                                     </h5>
+                                                                     break;
+                                                                 }
+
+                                                             }
+
+                                                             <p class='posted'><i class='fa fa-clock-o'></i> @res.CreateDate</p>
+                                                             <p> @Html.Raw(res.ResponseContent) </p>
+
+                                                         </div>
+                                                        }
+
+                                                    }
+                                                </div>
+                                            </div>
+                                            <a href="#" class="reply-link" data-comment-id="@comment.CommetId">Yanıtla</a>
+
+                                            <div id="replyForm_@comment.CommetId" class="reply-form" style="display: none;">
+                                                <form id="cevapFormu_@comment.CommetId">
+                                                    <div class="form-group">
+                                                        <label for="cevapMail">Email <span class="required">*</span></label>
+                                                        <input id="cevapMailAdresi_@comment.CommetId" name="cevapMail" type="text" class="form-control" />
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cevapMetni">Cevap:</label>
+                                                        <textarea id="cevapMetni_@comment.CommetId" class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary cevap-gonder-btn" onclick="ReplayMethod("@comment.CommetId+")">Gönder</button>
+                                                </form>
+                                            </div>
+
+
+
+
+
+
+
+                                            @*yorum cevap kısmı sonu*@
+
+
+
                                         </div>
                                     </div>
 
                                 }
-                            
+
                             </div>
                             <!-- /#comments-->
                             <div id="comment-form">
                                 <h4>Yorum yap</h4>
                                 <form id="yorumYap" method="post">
-                                    @*<div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Kullanıcı adı <span class="required">*</span></label>
-                                                    <input id="name" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>*@
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="email">Email <span class="required">*</span></label>
                                                 <input id="gelenMailAdresi" name="email" type="text" class="form-control" />
-                                              
-                                                
+
+
 
                                             </div>
                                         </div>
@@ -123,13 +183,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 text-right">
-                                            <button type="submit" onclick="YorumEkle()" class="btn btn-primary"><i class="fa fa-comment-o"></i> Yorum ekle</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-comment-o"></i> Yorum ekle</button>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 text-right">
                                             @ViewBag.Message
-                                            @*<input type="hidden" id="uyariMessage" name="name" value="@ViewBag.Message" />*@
+
                                         </div>
                                     </div>
                                 </form>
@@ -144,60 +204,111 @@
             </div>
         </div>
     </div>
-    </div>
-    @*<script src="~/distribution/js/map.js"></script>
-        <script src="~/distribution/js/front.js"></script>
-        <script src="~/distribution/vendor/jquery/jquery.js"></script>
-        <script src="~/distribution/vendor/jquery/jquery.min.js"></script>
-        <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
-        <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>*@
+</div>
+@*<script src="~/distribution/js/map.js"></script>
+    <script src="~/distribution/js/front.js"></script>
+    <script src="~/distribution/vendor/jquery/jquery.js"></script>
+    <script src="~/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
+    <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>*@
 
 <script>
 
 
-        function YorumEkle() {
-            var articleId = document.getElementById("articleId").value;
-            var yoruMetin = document.getElementById("comment").value;
-            var email = document.getElementById("gelenMailAdresi").value;
+
+
+    $(document).ready(function () {
+        $(".reply-link").click(function (event) {
+            event.preventDefault(); // Sayfa yenilenmesini engelle
+            var commentId = $(this).data("comment-id");
+            $("#replyForm_" + commentId).show();
+        });
+
+        $(".cevap-gonder-btn").click(function () {
+            var commentId = $(this).closest("div.reply-form").attr("id").replace("replyForm_", "");
+            var cevapMetni = $("#cevapMetni_" + commentId).val();
+            var cevapVerenMail = $("cevapMailAdresi_" + commentId).val();
+            var articleId = $("#articleId").val();
             
 
+            $.ajax({
+                url: "/Makaleler/YorumCevapla",
+                type: 'POST',
+                data: { "yorumId": commentId, "cevapMetni": cevapMetni, "cevapVerenMail": cevapVerenMail, "articleId": articleId },
+                success: function (result) {
+
+                    if (result != null) {
+                        var yorumCevapDiv = $("#commentResponse");
+                        yorumCevapDiv.append(
+                            " <div class='row'>         <div class='col-1'></div>   <div class='col-10'><h5>"+result.UserName+" </h5><p class='posted'><i class='fa fa-clock-o'></i>"+result.ResponseDate+"</p> <p>" + result.CommentContent+" </p></div></div>"
+                        )
 
 
 
-            //debugger;
-            $.ajax
-                ({
-                    url: "/Makaleler/YorumEkle",
-                    type: 'POST',
-                    //data: { id: id, userId: userId, yorumMetin: yorumMetin },
-                    data: { "articleid": articleId, "yorumMetin": yoruMetin, "email": email },
-                    success: function (result) {
-                        debugger;
-                        if (result != null) {
-                            var ekleYorumSatiri = document.getElementById("commentline");
-                            ekleYorumSatiri.append("<div class='row comment'><div class='col-md-3 col-lg-2 text-center text-md-center'></div><div class='col-md-9 col-lg-10'><h5>" + result.UserName + "</h5><p class='posted'><i class='fa fa-clock-o'></i>" + result.CommentDateTime + "</p><p>" + result.CommentContent + "</p><p class='reply'><a href='#'><i class='fa fa-reply'></i> Reply</a></p></div></div>");
-                            alert('Yorum eklendi');
-                        }
-                        else {
-                            alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
-                        }
-                        
-
-                    },
-                    Error: function (result) {
-                        if (result != null) {
-                            alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
-                        }
-                       // debugger;
+                        alert('Cevabınız başarıyla gönderildi!');
                     }
 
-                });
-        }
-
-        //   })
-        //});
 
 
+
+
+                    // Başarılı gönderim sonrası yapılacak işlemler
+                },
+                error: function () {
+                    alert('Bir hata oluştu, lütfen tekrar deneyin.');
+                }
+            });
+        });
+    });
+
+    function YorumEkle() {
+        var articleId = document.getElementById("articleId").value;
+        var yoruMetin = document.getElementById("comment").value;
+        var email = document.getElementById("gelenMailAdresi").value;
+
+
+
+
+
+        //debugger;
+        $.ajax
+            ({
+                url: "/Makaleler/YorumEkle",
+                type: 'POST',
+                //data: { id: id, userId: userId, yorumMetin: yorumMetin },
+                data: { "articleid": articleId, "yorumMetin": yoruMetin, "email": email },
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        var ekleYorumSatiri = document.getElementById("commentline");
+                        var isim = result.UserName;
+
+                        //with (ekleYorumSatiri) {
+                        //    append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>')
+                        //}
+
+                        $('#commentline').append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>');
+                        //alert('Yorum eklendi');
+                    }
+
+
+
+                },
+                error: function () {
+
+                    alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
+
+                    // debugger;
+                }
+
+            });
+    }
+
+
+    $('#yorumYap').submit(function (event) {
+        event.preventDefault(); // Formun gönderimini engelle
+        YorumEkle(); // AJAX isteğini gönder
+    });
 
 
 </script>

@@ -13,13 +13,12 @@
                     <a href='~/AdminPanel/Articles/ArticlesAdd' class='btn btn-block btn-success col-md-3'> Makale Ekle</a>
                 </h1>
             </div><!-- /.col -->
-
             @*<div class="col-sm-6">
 
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active"></li>
-                </ol>
-            </div>*@<!-- /.col -->
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active"></li>
+                    </ol>
+                </div>*@<!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
@@ -28,64 +27,70 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-info">
                 <h3 class="card-title">Makale Listesi</h3>
             </div>
             <!-- /.card-header -->
+
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th width= "30px">ID</th>
-                            <th width= "80px">Başlık</th>
-                            <th >Makale</th>
-                            <th width= "80px">Eklenme Tarihi</th>
-                            <th width= "50px">Aktif Mi</th>
-                            <th width= "50px">Detay</th>
-                            <th width= "50px">Güncelle</th>
-                            <th width= "50px">Sil</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                <div class="table-container" style="max-width: 100%; overflow-x: auto; ">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
                             <tr>
-                                <td>@item.ArticleId</td>
-                                <td>
-                                    @item.Title
-                                </td>
-                                <td>@Html.Raw(item.Content)</td>
-                                <td>@item.CreateDate.Date </td>
-                                <td>X</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                                </td>
+                                <th width="2%">ID</th>
+                                <th width="8%">Başlık</th>
+                                <th style="white-space: normal; width:auto">Makale</th>
+                                <th width="10%">Eklenme Tarihi</th>
+                                <th width="10%">Aktif Mi</th>
+                                <th width="10%">Detay</th>
+                                <th width="10%">Güncelle</th>
+                                <th width="10%">Sil</th>
+
                             </tr>
-                        }
-                    </tbody>
-                    @*<tfoot>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </tfoot>*@
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ArticleId</td>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    @*<td>@Html.Raw(item.Content)</td>*@
+                                    <td style="white-space: normal; width: auto">@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Content))</td>
+
+                                    <td>@item.CreateDate.Date </td>
+                                    <td>X</td>
+                                    <td>
+                                        <a href="~/AdminPanel/Articles/ArticleDetail/@item.ArticleId" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="~/AdminPanel/Articles/ArticleEdit/@item.ArticleId" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="~/AdminPanel/Articles/ArticleDelete/@item.ArticleId" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        @*<tfoot>
+                <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                </tr>
+            </tfoot>*@
+                    </table>
+                </div>
             </div>
-            <!-- /.card-body -->
         </div>
-
-
+        <!-- /.card-body -->
     </div>
+
+
+
 </section>
 
 

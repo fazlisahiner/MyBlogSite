@@ -67,5 +67,28 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             return View(articleList);
         }
 
+        public ActionResult CommentDetail(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
+            return View(getComment);
+        }
+
+        public ActionResult CommentEdit(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
+
+            return View(getComment);
+
+        }
+
+        public ActionResult CommentDelete(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
+            return View(getComment);
+        }
+
     }
 }

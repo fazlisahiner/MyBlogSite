@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogSite.Web;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,9 +19,19 @@ namespace BlogSite.Web.Controllers
             var getAllArticles = db.Articles.ToList();
             var getAllCategories = db.Categories.ToList();
 
+
             return View(Tuple.Create(getAllCategories, getAllArticles));
 
            
         }
     }
 }
+
+//Tuple.Create(getAllCategories, getAllArticles)
+
+//MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+//ViewBag.CategoryList = db.Categories.ToList();
+
+
+//var getAllArticles = db.Articles.ToList();
+//var getAllCategories = db.Categories.ToList();

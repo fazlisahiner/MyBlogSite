@@ -1,0 +1,70 @@
+﻿@model BlogSite.Web.Roles
+
+@{
+    ViewBag.Title = "RoleDetail";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="card-title">Rol Detay</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.RoleName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.RoleName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Permissions)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Permissions)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdateDate)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "RoleEdit", new { id = Model.RoleId }) |
+                    @Html.ActionLink("Back to List", "RolesIndex")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

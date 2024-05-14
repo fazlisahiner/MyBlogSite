@@ -88,7 +88,7 @@
 
                         @if (makale.Content.ToString().Length > 250)
                         {
-                            <p class="intro"> @Html.Raw(makale.Content.ToString().Substring(0,500)) ... </p><br />
+                            <p class="intro"> @Html.Raw(makale.Content.ToString().Substring(0,50)) ... </p><br />
                             <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
                         }
                         else

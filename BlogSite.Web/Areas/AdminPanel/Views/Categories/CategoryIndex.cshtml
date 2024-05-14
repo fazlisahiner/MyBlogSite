@@ -30,7 +30,7 @@
     <div class="container-fluid">
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-info">
                 <h3 class="card-title">Kategori Listesi</h3>
             </div>
             <!-- /.card-header -->
@@ -59,13 +59,13 @@
                                
                                 @*<td>X</td>*@
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
+                                    <a href="~/AdminPanel/Categories/CategoryDetail/@item.CategoryId" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                    <a href="~/AdminPanel/Categories/CategoryEdit/@item.CategoryId" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="~/AdminPanel/Categories/CategoryDelete/@item.CategoryId" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         }

@@ -64,5 +64,32 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             return View();
 
         }
+
+        public ActionResult CategoryDetail(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
+            return View(getCategory);
+        }
+
+        public ActionResult CategoryEdit(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
+
+            return View(getCategory);
+
+        }
+
+        public ActionResult CategoryDelete(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
+            return View(getCategory);
+        }
+
+
+
+
     }
 }

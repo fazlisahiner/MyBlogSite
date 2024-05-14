@@ -1,0 +1,96 @@
+﻿@model BlogSite.Web.Articles
+
+@{
+    ViewBag.Title = "ArticleDelete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h3 class="card-title">Sil</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <h3>Silmek istediğinizden enim misiniz?</h3>
+                <div>
+                    
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+
+                        <dt>
+                            @*@Html.DisplayNameFor(model => model.Content)*@
+
+                            @*@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Content))*@
+                            Content
+                        </dt>
+
+                        <dd>
+                            @*@Html.DisplayFor(model => model.Content)*@
+                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Content))
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserId)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CategoryId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CategoryId)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Views)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Views)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Likes)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Likes)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                            @Html.ActionLink("Listeye geri dön", "ArticlesIndex")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

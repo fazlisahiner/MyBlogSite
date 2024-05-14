@@ -70,6 +70,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
                         Articles model = new Articles();
                         model.Title = form["baslik"];
                         model.Content = gelenMakale;
+                        //model.Content = System.Web.HttpUtility.HtmlDecode(gelenMakale);
                         model.CategoryId = cat;
 
 
@@ -91,6 +92,29 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
           return View(categoryList);
 
 
+        }
+
+        public ActionResult ArticleDetail(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+            return View(getArticle);
+        }
+
+        public ActionResult ArticleEdit (int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+            
+            return View(getArticle);
+
+        }
+
+        public ActionResult ArticleDelete ( int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+            return View(getArticle);
         }
     }
 }

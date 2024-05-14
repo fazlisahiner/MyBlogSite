@@ -28,7 +28,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-info">
                 <h3 class="card-title">Rol Listesi</h3>
             </div>
             <!-- /.card-header -->
@@ -38,7 +38,7 @@
                         <tr>
                             <th width="30px" >ID</th>
                             <th width="100px" >Rol ismi</th>
-                            <th width="400px" >Açıklama</thwidth="50px">
+                            <th width="400px" >Açıklama</th>
                             <th width="100px" >Yetkiler</th>
                             <th width="100px" >Eklenme Tarihi</th>
                             <th width="80px" >Detay</th>
@@ -59,13 +59,13 @@
                                 <td> @item.Permissions</td>
                                 <td>@item.CreateDate</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
+                                    <a href="~/AdminPanel/Roles/RoleDetail/@item.RoleId" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                    <a href="~/AdminPanel/Roles/RoleEdit/@item.RoleId" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="~/AdminPanel/Roles/RoleDelete/@item.RoleId" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         }

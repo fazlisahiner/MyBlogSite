@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="MyBlogSiteDBModel.Comments" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBlogSiteDBModel.Roles" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBlogSiteDBModel.Users" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBlogSiteDBModel.CommentResponse" Width="1.5" PointX="7.5" PointY="2.5" />
+        <AssociationConnector Association="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

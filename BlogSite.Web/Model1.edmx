@@ -25,6 +25,17 @@
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CommentResponse">
+          <Key>
+            <PropertyRef Name="ResponseId" />
+          </Key>
+          <Property Name="ResponseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommetId" />
@@ -59,12 +70,29 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="date" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CommentResponse_CommentResponse">
+          <End Role="CommentResponse" Type="Self.CommentResponse" Multiplicity="1" />
+          <End Role="CommentResponse1" Type="Self.CommentResponse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CommentResponse">
+              <PropertyRef Name="ResponseId" />
+            </Principal>
+            <Dependent Role="CommentResponse1">
+              <PropertyRef Name="ResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MyBlogSiteDBModelStoreContainer">
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentResponse" EntityType="Self.CommentResponse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CommentResponse_CommentResponse" Association="Self.FK_CommentResponse_CommentResponse">
+            <End Role="CommentResponse" EntitySet="CommentResponse" />
+            <End Role="CommentResponse1" EntitySet="CommentResponse" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -130,7 +158,37 @@
           <EntitySet Name="Comments" EntityType="Self.Comments" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="CommentResponse" EntityType="MyBlogSiteDBModel.CommentResponse" />
+          <AssociationSet Name="FK_CommentResponse_CommentResponse" Association="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse">
+            <End Role="CommentResponse" EntitySet="CommentResponse" />
+            <End Role="CommentResponse1" EntitySet="CommentResponse" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CommentResponse">
+          <Key>
+            <PropertyRef Name="ResponseId" />
+          </Key>
+          <Property Name="ResponseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CommentResponse1" Relationship="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse" FromRole="CommentResponse" ToRole="CommentResponse1" />
+          <NavigationProperty Name="CommentResponse2" Relationship="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse" FromRole="CommentResponse1" ToRole="CommentResponse" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CommentResponse_CommentResponse">
+          <End Type="MyBlogSiteDBModel.CommentResponse" Role="CommentResponse" Multiplicity="1" />
+          <End Type="MyBlogSiteDBModel.CommentResponse" Role="CommentResponse1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CommentResponse">
+              <PropertyRef Name="ResponseId" />
+            </Principal>
+            <Dependent Role="CommentResponse1">
+              <PropertyRef Name="ResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -193,6 +251,18 @@
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentResponse">
+            <EntityTypeMapping TypeName="MyBlogSiteDBModel.CommentResponse">
+              <MappingFragment StoreEntitySet="CommentResponse">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ResponseContent" ColumnName="ResponseContent" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

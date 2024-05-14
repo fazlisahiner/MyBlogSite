@@ -1,0 +1,40 @@
+﻿@model BlogSite.Web.Categories
+
+@{
+    ViewBag.Title = "CategoryDetail";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="card-title">Category Detay</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CategoryName)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "CategoryEdit", new { id = Model.CategoryId }) |
+                    @Html.ActionLink("Listeye geri dön", "CategoryIndex")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

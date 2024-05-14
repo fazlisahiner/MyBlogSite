@@ -102,5 +102,28 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             return View(role);
 
         }
+
+        public ActionResult UserDetail(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+            return View(getUser);
+        }
+
+        public ActionResult UserEdit(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+
+            return View(getUser);
+
+        }
+
+        public ActionResult UserDelete(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+            return View(getUser);
+        }
     }
 }

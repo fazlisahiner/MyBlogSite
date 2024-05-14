@@ -1,0 +1,45 @@
+﻿@model BlogSite.Web.Categories
+
+@{
+    ViewBag.Title = "CategoryDelete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h3 class="card-title">Category sil</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <h3>Silmek istediğinizden emin misiniz?</h3>
+                <div>
+                    <h4>Categori:</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CategoryName)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                            @Html.ActionLink("Listeye geri dön", "CategoryIndex")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

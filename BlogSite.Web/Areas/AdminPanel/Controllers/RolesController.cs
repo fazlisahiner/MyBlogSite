@@ -61,5 +61,28 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
 
         }
 
+        public ActionResult RoleDetail(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            return View(getRole);
+        }
+
+        public ActionResult RoleEdit(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+
+            return View(getRole);
+
+        }
+
+        public ActionResult RoleDelete(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            return View(getRole);
+        }
+
     }
 }

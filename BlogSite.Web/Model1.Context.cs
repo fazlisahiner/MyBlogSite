@@ -30,5 +30,6 @@ namespace BlogSite.Web
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<CommentResponse> CommentResponse { get; set; }
     }
 }
