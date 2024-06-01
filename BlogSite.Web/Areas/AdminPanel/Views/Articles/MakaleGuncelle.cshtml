@@ -1,0 +1,116 @@
+﻿@using BlogSite.Web.Areas.AdminPanel.Models
+
+@model MakaleDetay
+
+@{
+    ViewBag.Title = "MakaleGuncelle";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="card-title">Makale Güncelle</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+
+                <div>
+                    <h3>@Model.Article.Title</h3>
+                    @*<p>Kategori: @Model.Category.CategoryName</p>*@
+                    @*@Html.TextAreaFor(m => m.Article.Content, new { id = "summernote" })*@
+                    @*<h4>Kapatıldı</h4>*@
+                </div>
+
+
+
+
+
+
+
+
+
+                @using (Html.BeginForm("MakaleGuncelle", "Articles", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Article.ArticleId)
+
+                    @*<input type="hidden" name="Icerik" id="hiddenIcerik" value="" />*@
+
+                    <div>
+                        @Html.LabelFor(m => m.Article.Title)
+
+                        @Html.TextBoxFor(m => m.Article.Title)
+                    </div>
+
+
+                    <div>
+                        @Html.LabelFor(m => m.Article.Content)
+
+                        @Html.TextAreaFor(m =>  m.Article.Content, new { @class="form-control", id= "summernote" })
+                    </div>
+
+
+
+
+
+
+
+                    @*<button type="button" onclick="updateHiddenField()" >uygula</button>*@
+                    <button type="submit" >Güncelle</button>
+
+                    @section Scripts {
+
+
+
+                        @*<script>
+
+
+
+var tempContent = '@Html.Raw(TempData["SummernoteIcerik"])';
+            if (tempContent) {
+                $('#summernote').summernote('code', tempContent);
+            } else {
+                $('#summernote').summernote('code', '@Model.Article.Content');
+            }
+
+                        </script>*@
+                        <!--<script>
+                            function updateHiddenField() {
+    var content = $('#summernote').summernote('code');
+    $(`#hiddenIcerik`).val(content);
+   /* $(`input[name="Icerik"]`).val(content) ;*/-->
+     @*@Model.Article.Content = content;*@
+<!--}
+
+                        </script>-->
+
+
+
+                    }
+
+                }
+
+
+                <div>
+                    @Html.ActionLink("Listeye geri dön", "ArticlesIndex")
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@*Model.Article.Content*@
+@*@Html.Raw(Model.Article.Content)*@

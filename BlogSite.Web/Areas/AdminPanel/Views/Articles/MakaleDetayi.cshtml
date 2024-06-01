@@ -1,0 +1,62 @@
+﻿
+@using BlogSite.Web.Areas.AdminPanel.Models
+
+@model MakaleDetay
+
+@{
+    ViewBag.Title = "MakaleDetayi";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="card-title">Makale Detay</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Başlık
+                        </dt>
+
+                        <dd>
+                            @Model.Article.Title
+                        </dd>
+                        <dt>
+                            İçerik
+                        </dt>
+
+                        <dd>
+                            @Html.Raw( Model.Article.Content )
+                        </dd>
+                        <dt>
+                            Kategori
+                        </dt>
+
+                        <dd>
+                            @Model.Category.CategoryName
+                            @*@Html.DisplayFor(model => model.CategoryName)*@
+                        </dd>
+                        <dt>
+                            Yazar
+                        </dt>
+
+                        <dd>
+                            @Model.User.UserName
+                        </dd>
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Düzenle", "MakaleGuncelle", new { id = Model.Article.ArticleId }) |
+                    @Html.ActionLink("Listeye geri dön", "ArticlesIndex")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+

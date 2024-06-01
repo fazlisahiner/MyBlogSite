@@ -11,16 +11,19 @@ namespace BlogSite.Web
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Articles
     {
         public int ArticleId { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string Content { get; set; }
         public int UserId { get; set; }
         public int CategoryId { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int Views { get; set; }
         public int Likes { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     }
 }

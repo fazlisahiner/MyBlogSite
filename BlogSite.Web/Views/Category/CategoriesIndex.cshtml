@@ -1,0 +1,10 @@
+﻿@model  List<Categories>
+
+
+<ul class="nav flex-column nav-pills">
+    @foreach (var kategori in Model)
+    {
+        <li><a href="~/Anasayfa/AnasayfaIndex/@kategori.CategoryId" class="nav-link"> @kategori.CategoryName</a></li>
+
+    }
+</ul>

@@ -1,10 +1,5 @@
 ﻿
-<script src="~/distribution/js/map.js"></script>
-<script src="~/distribution/js/front.js"></script>
-<script src="~/distribution/vendor/jquery/jquery.js"></script>
-<script src="~/distribution/vendor/jquery/jquery.min.js"></script>
-<script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
-<script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
+
 
 @{
     ViewBag.Title = "MakaleDetayIndex";
@@ -21,7 +16,7 @@
     <div id="content">
         <div class="container">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-lg-12">
                     <!-- breadcrumb-->
                     @*<nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -31,7 +26,7 @@
                             </ol>
                         </nav>*@
                 </div>
-                <div id="blog-post" class="col-lg-11">
+                <div id="blog-post" class="col-lg-12">
                     <div class="box">
 
 
@@ -53,13 +48,13 @@
                             </a> |  @Model.Item1.CreateDate
                         </p>
 
-                        <div id="post-content">
-                            <p>
+                        <div id="post-content" style=" width: 100%;">
+                            
                                 <h2>@Model.Item1.Title</h2>
-                            </p>
-                            <p>
-                                @Html.Raw(Model.Item1.Content)
-                            </p>
+                            
+                            <div>
+                                @Html.Raw(Model.Item1.Content.ToString())
+                            </div>
 
                         </div>
                         <!-- /#post-content-->
@@ -102,8 +97,8 @@
                                                     @foreach (var res in Model.Item4)
                                                     {
                                                         if (res.CommentId == comment.CommetId)
-                                                        {<div class="col-1"></div>
-                                                         <div class="col-10">
+                                                        {<div class="col-3"></div>
+                                                         <div class="col-9">
                                                              @foreach (var user in Model.Item3)
                                                              {
                                                                  if (user.UsersId == res.UserId)
@@ -124,18 +119,18 @@
                                                     }
                                                 </div>
                                             </div>
-                                            <a href="#" class="reply-link" data-comment-id="@comment.CommetId">Yanıtla</a>
+                                            <a href="#" class="reply-link" data-comment-id="@comment.CommetId"><i class="fa fa-reply"></i>Yanıtla</a>
 
                                             <div id="replyForm_@comment.CommetId" class="reply-form" style="display: none;">
                                                 <form id="cevapFormu_@comment.CommetId">
                                                     <div class="form-group">
-                                                        <label for="cevapMail">Email <span class="required">*</span></label>
-                                                        <input id="cevapMailAdresi_@comment.CommetId" name="cevapMail" type="text" class="form-control" />
+                                                        <label for="InputCevapMail">Email <span class="required">*</span></label>
+                                                        <input name="InputCevapMail" id="cevapMailAdresi_@comment.CommetId"  type="text" class="form-control" />
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="cevapMetni">Cevap:</label>
-                                                        <textarea id="cevapMetni_@comment.CommetId" class="form-control" rows="3"></textarea>
+                                                        <label for="TextCevapMetni">Cevap:</label>
+                                                        <textarea name="TextCevapMetni" id="cevapMetni_@comment.CommetId" class="form-control" rows="3" ></textarea>
                                                     </div>
                                                     <button type="button" class="btn btn-primary cevap-gonder-btn" onclick="ReplayMethod("@comment.CommetId+")">Gönder</button>
                                                 </form>
@@ -177,7 +172,7 @@
                                         <div class="col-md-11">
                                             <div class="form-group">
                                                 <label for="comment">Yorum <span class="required">*</span></label>
-                                                <textarea id="comment" rows="4" class="form-control"></textarea>
+                                                <textarea id="comment" name="comment" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -205,14 +200,14 @@
         </div>
     </div>
 </div>
-@*<script src="~/distribution/js/map.js"></script>
+<script src="~/distribution/js/map.js"></script>
     <script src="~/distribution/js/front.js"></script>
     <script src="~/distribution/vendor/jquery/jquery.js"></script>
     <script src="~/distribution/vendor/jquery/jquery.min.js"></script>
     <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
-    <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>*@
+    <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
 
-<script>
+    <script>
 
 
 
@@ -229,7 +224,7 @@
             var cevapMetni = $("#cevapMetni_" + commentId).val();
             var cevapVerenMail = $("cevapMailAdresi_" + commentId).val();
             var articleId = $("#articleId").val();
-            
+
 
             $.ajax({
                 url: "/Makaleler/YorumCevapla",
@@ -287,7 +282,7 @@
                         //    append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>')
                         //}
 
-                        $('#commentline').append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>');
+                        $('#commentline').append('<div class="row comment"><div class="col-md-1 col-lg-1 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class=" Reply"><a href="#" class="reply-link" data-comment-id="'+result.CommetId+'"><i class="fa fa-reply"></i> Yanıtla</a></p></div></div>');
                         //alert('Yorum eklendi');
                     }
 
@@ -311,6 +306,6 @@
     });
 
 
-</script>
+    </script>
 
 

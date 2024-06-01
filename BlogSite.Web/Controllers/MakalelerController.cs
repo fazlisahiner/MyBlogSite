@@ -15,12 +15,15 @@ namespace BlogSite.Web.Controllers
         // GET: Makaleler
         public ActionResult Index()
         {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
             return View();
         }
 
         public ActionResult MakaleDetayIndex(int? id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
             var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();//eşeleşen ilk değeri getir
             //int userId = getArticle.UserId;
             var getAllCategories = db.Categories.ToList();
@@ -49,11 +52,13 @@ namespace BlogSite.Web.Controllers
         {
             
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
+
             //var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();//eşeleşen ilk değeri getir
 
             //var getAllCategories = db.Categories.ToList();
 
-           
+
             var kullanici = db.Users.Where(usr => usr.EMail == email).FirstOrDefault();
             int usId = kullanici.UsersId;
 
@@ -87,6 +92,7 @@ namespace BlogSite.Web.Controllers
 
                     CommentDTO commentDTO = new CommentDTO();
                     //var user = db.Users.Where(k => k.UsersId == usId).FirstOrDefault();
+                    commentDTO.CommetId = model.CommetId;
                     commentDTO.UserId = usId;
                     commentDTO.ArticleId = model.ArticleId;
                     commentDTO.CommentDatetime = model.CreateDate;
@@ -107,6 +113,7 @@ namespace BlogSite.Web.Controllers
         {
 
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
             //var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();//eşeleşen ilk değeri getir
 
             //var getAllCategories = db.Categories.ToList();

@@ -7,7 +7,7 @@ namespace BlogSite.Web.Models
 {
     public class CommentDTO
     {
-
+        public int CommetId { get; set; }
         public int ArticleId { get; set; }//Article
         public string CommentContent{ get; set; }//Comment
         public int UserId { get; set; }

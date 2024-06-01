@@ -1,4 +1,5 @@
 ﻿
+@using BlogSite.Web.Models
 
 <!DOCTYPE html>
 <html>
@@ -22,13 +23,40 @@
     <link rel="stylesheet" href="/distribution/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/distribution/css/custom.css">
+    
     <!-- Favicon-->
     <link rel="shortcut icon" href="/distribution/favicon.png">
     <!-- Tweaks for older IEs-->
     @*[if lt IE 9]>*@
     @*<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>*@
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>*@
     <!--[endif]-->
+
+    <style>
+        /*ul {
+            display: flex;
+            flex-wrap: wrap;*/ /* İçerik taşarsa alt satıra kaymasını sağlar */
+        /*list-style-type: disc;
+            padding-inline-start: 40px;
+        }*/
+
+        li {
+            /* display: flex;*/
+            flex: 1 1 auto; /* Esnek büyüme ve küçülme sağlar */
+            /*min-width: 200px;*/ /* Minimum genişlik belirler */
+            box-sizing: border-box; /* Padding ve border'ı genişlik hesaplamasına dahil eder */
+            /*margin: 1px;*/
+           /* word-wrap: break-word;*/
+            overflow-wrap: break-word;
+        }
+        p {
+            overflow-wrap: break-word;
+        }
+        div {
+            overflow-wrap: break-word;
+        }
+    </style>
+
 </head>
 <body>
     <!-- navbar-->
@@ -40,7 +68,7 @@
         <!--<div id="top">--> <!-- burda giriş kutucuğu vardı alta aldım -->
         <!-- *** TOP BAR END ***-->
         <!--</div>-->
-@*@model List<Categories>*@ 
+        @*@model List<Categories>*@
 
 
         <nav class="navbar navbar-expand-lg">
@@ -53,11 +81,12 @@
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
-                    <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button>
-                    <a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+                    <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i>
+                    </button>
+                    @*<a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>*@
                 </div>
                 <div id="navigation" class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto" style="float: left;">
                         <li class="nav-item"><a href="~/Anasayfa/AnasayfaIndex" class="nav-link ">Anasayfa</a></li>
                         <li class="nav-item"><a href="~/Hakkimda/HakkimdaIndex" class="nav-link ">Hakkımda</a></li>
                         <li class="nav-item"><a href="~/Iletisim/IletisimIndex" class="nav-link ">İletİşİm</a></li>
@@ -156,23 +185,22 @@
         <div class="col-lg-8">
 
             @RenderBody()
-
         </div>
 
-        <div class="col-lg-3">
-            <!--
-            *** CategoryList ***
-            _________________________________________________________
-            -->
-           
+        <div class="col-lg-3" style="width:100%">
+
 
             <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                    <h3 class="h4 panel-title">Kategoriler</h3>
+
+                    <h3>Kategoriler</h3>
                 </div>
                 <div class="card-body">
                     <ul class="nav flex-column nav-pills">
-                        @foreach (var kategori in Model.Item1)
+
+
+
+                        @foreach (var kategori in ViewBag.CategoryList)
                         {
                             <li><a href="~/Anasayfa/AnasayfaIndex/@kategori.CategoryId" class="nav-link"> @kategori.CategoryName</a></li>
 
@@ -209,10 +237,14 @@
                     <h4 class="mb-3">Kategoriler</h4>
 
                     <ul class="list-unstyled">
-                        <li><a href="blog.html">Java Script</a></li>
-                        <li><a href="blog.html">HTML</a></li>
-                        <li><a href="blog.html">CSS</a></li>
-                        <li><a href="blog.html">C#</a></li>
+
+                        @foreach (var kategori in ViewBag.CategoryList)
+                        {
+                            <li><a href="~/Anasayfa/AnasayfaIndex/@kategori.CategoryId" @*class="nav-link"*@> @kategori.CategoryName</a></li>
+
+                        }
+
+                     
                     </ul>
 
 
@@ -230,17 +262,18 @@
                 </div>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Haberdar olun</h4>
+                    @*<h4 class="mb-3">Haberdar olun</h4>*@
                     @*<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>*@
-                    <form>
+                    <!--<form>
                         <div class="input-group">
-                            <input type="text" class="form-control"><span class="input-group-append">
+                            <input type="text" class="form-control">
+                            <span class="input-group-append">
                                 <button type="button" class="btn btn-outline-secondary">Takip!</button>
                             </span>
-                        </div>
+                        </div>-->
                         <!-- /input-group-->
-                    </form>
-                    <hr>
+                    <!--</form>
+                    <hr>-->
                     <h4 class="mb-3">Stay in touch</h4>
                     <p class="social">
                         <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
@@ -285,6 +318,6 @@
     <script src="/distribution/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="/distribution/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
     <script src="/distribution/js/front.js"></script>
-
+    <script src="/distribution/js/map.js"></script>
 </body>
 </html>

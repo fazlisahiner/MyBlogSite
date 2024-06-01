@@ -71,13 +71,18 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
-            return View(getComment);
+            var user = db.Users.Where(us => us.UsersId == getComment.UserId).FirstOrDefault();
+            var article = db.Articles.Where(ar => ar.ArticleId == getComment.ArticleId).FirstOrDefault();
+            return View(Tuple.Create(getComment, user, article) );
         }
 
         public ActionResult CommentEdit(int id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
+
+            var user = db.Users.Where(us => us.UsersId == getComment.UserId).FirstOrDefault();
+            var article = db.Articles.Where(ar => ar.ArticleId == getComment.ArticleId).FirstOrDefault();
 
             return View(getComment);
 
@@ -87,6 +92,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getComment = db.Comments.Where(k => k.CommetId == id).FirstOrDefault();
+            //db.Comments.Remove(getComment);
             return View(getComment);
         }
 

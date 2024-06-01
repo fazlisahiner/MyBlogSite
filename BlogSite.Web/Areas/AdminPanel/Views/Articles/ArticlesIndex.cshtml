@@ -38,8 +38,8 @@
                         <thead>
                             <tr>
                                 <th width="2%">ID</th>
-                                <th width="8%">Başlık</th>
-                                <th style="white-space: normal; width:auto">Makale</th>
+                                <th width="8%" >Başlık</th>
+                                <th style=" width:39%">Makale</th>
                                 <th width="10%">Eklenme Tarihi</th>
                                 <th width="10%">Aktif Mi</th>
                                 <th width="10%">Detay</th>
@@ -53,19 +53,52 @@
                             {
                                 <tr>
                                     <td>@item.ArticleId</td>
-                                    <td>
+                                    <td style="font-weight: bolder">
                                         @item.Title
                                     </td>
                                     @*<td>@Html.Raw(item.Content)</td>*@
-                                    <td style="white-space: normal; width: auto">@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Content))</td>
+                                <td @*style=" width: 39%; display:flex;"*@>
+                                    @if (item.Content.Length > 200)
+                                    {
+                                        <p @*style="overflow-wrap: break-word"*@>
+                                            @*@Html.Raw(item.Content.Substring(0, 590))...*@
+
+                                            @{
+                                                var truncatedHtml = BlogSite.Web.Models.HtmlHelperTo.TruncateHtml(item.Content, 190);
+                                            }
+
+                                            @Html.Raw(truncatedHtml)
+
+
+
+
+                                        </p><br />
+                                        <p class="read-more" style="text-align: right;"><a href="~/AdminPanel/AdminMakale/AdminMakaleDetay/@item.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
+                                    }
+                                    else
+                                    {
+                                        <p class="intro" @*style="overflow-wrap: break-word"*@> @Html.Raw(item.Content) </p>
+                                        <br />
+                                        <p class="read-more" style="text-align: right;"><a href="~/AdminPanel/AdminMakale/AdminMakaleDetay/@item.ArticleId" class="btn btn-primary">Yorumlar</a></p>
+
+                                    }
+
+
+
+
+
+
+
+                                    @*@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Content))*@
+                                </td>
 
                                     <td>@item.CreateDate.Date </td>
                                     <td>X</td>
                                     <td>
-                                        <a href="~/AdminPanel/Articles/ArticleDetail/@item.ArticleId" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
+                                        <a href="~/AdminPanel/Articles/MakaleDetayi/@item.ArticleId" class="btn btn-sm btn-info"><i class="fas fa-folder"></i></a>
                                     </td>
                                     <td>
-                                        <a href="~/AdminPanel/Articles/ArticleEdit/@item.ArticleId" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                        <a href="~/AdminPanel/Articles/MakaleGuncelle/@item.ArticleId" class="btn btn-sm btn-warning"><i class="fas fa-pen-alt"></i></a>
                                     </td>
                                     <td>
                                         <a href="~/AdminPanel/Articles/ArticleDelete/@item.ArticleId" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>

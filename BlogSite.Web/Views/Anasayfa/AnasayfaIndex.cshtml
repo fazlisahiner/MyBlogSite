@@ -1,4 +1,6 @@
 ﻿
+
+
 @{
     ViewBag.Title = "AnasayfaIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,10 +8,7 @@
 
 @model Tuple<List<Categories>, List<Articles>, List<Users>, List<Comments>>
 
-@*@foreach (var makale in Model.Item2)
-    {*@
 
-@*@model List<Articles>*@
 
 <div id="all">
     <div id="content">
@@ -45,63 +44,90 @@
 
 
                         <!-- post        -->
-                    <div class="post">
-                        <h2><a href="post.html">@makale.Title</a></h2>
-                        <p class="author-category">
-                            By <a href="#">
-                                @foreach (var user in Model.Item3)
+                        <div class="post">
+                            <h2><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId">@makale.Title</a></h2>
+                            <p class="author-category">
+                                By <a href="#">
+                                    @foreach (var user in Model.Item3)
+                                    {
+
+                                        if (user.UsersId == makale.UserId)
+                                        {
+                                            @user.UserName
+                                        }
+                                    }
+
+                                </a>
+
+
+                            </p>
+                            <hr>
+                            <p class="date-comments">
+                                <a href="#"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a>
+                                <i class="fa fa-comment-o">
+
+                                    @{int sayac = 0; }
+                                    @foreach (var com in Model.Item4)
+                                    {
+                                        if (com.ArticleId == makale.ArticleId)
+                                        {
+                                            sayac += 1;
+
+                                        }
+                                    }
+
+
+                                    @sayac
+                                </i> Yorum
+
+                                @*<a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a>*@
+                            </p>
+
+                            @*<div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>*@
+
+
+
+                                @if (makale.Content.ToString().Length > 200)
                                 {
 
-                                    if (user.UsersId == makale.UserId)
-                                    {
-                                        @user.UserName
-                                    }
+                                    <p class="intro">
+                                        <div>
+                                            @*@Html.Raw(makale.Content.Substring(0, 490)) ...*@
+
+                                            @*@MvcHtmlString.Create(makale.Content.Substring(0, 490)) ...*@
+
+
+                                            @*@HttpUtility.HtmlEncode(makale.Content.ToString().Substring(0, 490)) ...*@
+
+
+
+
+
+                                            @{
+                                                var truncatedHtml = BlogSite.Web.Models.HtmlHelperTo.TruncateHtml(makale.Content, 190);
+                                            }
+
+                                            @Html.Raw(truncatedHtml)
+
+
+                                        </div>
+                                    </p><br />
+                                    <p class="read-more" style="text-align: right;"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
                                 }
-
-                            </a>
-
-
-                        </p>
-                        <hr>
-                        <p class="date-comments">
-                            <a href="#"><i class="fa fa-calendar-o"></i> @makale.CreateDate</a>
-                            <i class="fa fa-comment-o">
-
-                                @{int sayac = 0; }
-                                @foreach (var com in Model.Item4)
+                                else
                                 {
-                                    if (com.ArticleId == makale.ArticleId)
-                                    {
-                                        sayac += 1;
-
-                                    }
+                                    <p class="intro">
+                                        <div>
+                                            @Html.Raw(makale.Content)
+                                        </div>
+                                    </p>
+                                    <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Yorum yap</a></p>
                                 }
 
 
-                                @sayac
-                            </i> Yorum
+                            
 
-                            @*<a href="~/Yorumlar/YorumlarIndex/@makale.ArticleId"><i class="fa fa-comment-o"></i>  Comments</a>*@
-                        </p>
-
-                        @*<div class="image"><a href="post.html"><img src="/distribution/img/blog.jpg" alt="Example blog post alt" class="img-fluid"></a></div>*@
-
-                        @if (makale.Content.ToString().Length > 250)
-                        {
-                            <p class="intro"> @Html.Raw(makale.Content.ToString().Substring(0,50)) ... </p><br />
-                            <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Okumaya devam et</a></p>
-                        }
-                        else
-                        {
-                            <p class="intro"> @Html.Raw(makale.Content) </p>
-                            <p class="read-more"><a href="~/Makaleler/MakaleDetayIndex/@makale.ArticleId" class="btn btn-primary">Yorum yap</a></p>
-                        }
-
-
-
-
-
-                    </div>
+                        </div>
 
                     }
                     <!-- post        -->
@@ -110,34 +136,17 @@
                         <div class="next"><a href="#" class="btn btn-outline-secondary">Sonrakİ →</a></div>
                     </div>
                 </div>
-                <!-- /.col-lg-9-->
-                <!-- *** LEFT COLUMN END ***-->
-                <!--<div class="col-lg-3">
-                    <!--
-                    *** BLOG MENU ***
-                    _________________________________________________________
-                    -->
-                <!--<div class="card sidebar-menu mb-4">
-                    <div class="card-header">
-                        <h3 class="h4 panel-title">Kategoriler</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul class="nav flex-column nav-pills">
-                            ATsembolü foreach (var kategori in Model.Item1)
-                            {
-                                <li><a href="~/Anasayfa/AnasayfaIndex/atsembolü kategori.CategoryId" class="nav-link"> ATsembolükategori.CategoryName</a></li>
 
-                            }
-
-                        </ul>
-                    </div>
-                </div>-->
-                @*bu kısmı layouta aldım*@
-                <!-- /.col-lg-3-->
-                <!-- *** BLOG MENU END ***-->
-                <!--@*<div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>*@
-                </div>-->
             </div>
         </div>
     </div>
 </div>
+@*<script>
+        function icerikTemizle(event)
+        {
+            var htmlYok = Regex.Replace(event, "<.*?>", string.Empty);
+
+        }
+
+
+    </script>*@

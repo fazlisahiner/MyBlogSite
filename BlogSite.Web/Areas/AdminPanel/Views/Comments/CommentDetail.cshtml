@@ -4,6 +4,7 @@
     ViewBag.Title = "CommentDetail";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
+@*@model Tuple <Comments, Users, Articles >*@
 
 <section class="content">
     <div class="container-fluid">
@@ -15,45 +16,58 @@
             <div class="card-body">
 
                 <div>
-                    
+
                     <dl class="dl-horizontal">
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.Item1.ArticleId)*@
                             @Html.DisplayNameFor(model => model.ArticleId)
                         </dt>
 
                         <dd>
+                            @*@{ var makaleAdi = }*@
+
+
+                            @*@Html.DisplayFor(model => model.Item3.Title)*@
                             @Html.DisplayFor(model => model.ArticleId)
                         </dd>
 
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.Item1.UserId)*@
                             @Html.DisplayNameFor(model => model.UserId)
                         </dt>
 
                         <dd>
+                            @*@Html.DisplayFor(model => model.Item2.UserName)*@
                             @Html.DisplayFor(model => model.UserId)
                         </dd>
 
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.Item1.Content)*@
                             @Html.DisplayNameFor(model => model.Content)
                         </dt>
 
                         <dd>
+                            @*@Html.DisplayFor(model => model.Item1.Content)*@
                             @Html.DisplayFor(model => model.Content)
                         </dd>
 
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.Item1.CreateDate)*@
                             @Html.DisplayNameFor(model => model.CreateDate)
                         </dt>
 
                         <dd>
+                            @*@Html.DisplayFor(model => model.Item1.CreateDate)*@
                             @Html.DisplayFor(model => model.CreateDate)
                         </dd>
 
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.Item1.UpdateDate)*@
                             @Html.DisplayNameFor(model => model.UpdateDate)
                         </dt>
 
                         <dd>
+                            @*@Html.DisplayFor(model => model.Item1.UpdateDate)*@
                             @Html.DisplayFor(model => model.UpdateDate)
                         </dd>
 
@@ -63,7 +77,7 @@
                     @Html.ActionLink("Edit", "CommentEdit", new { id = Model.CommetId }) |
                     @Html.ActionLink("Back to List", "CommentsIndex")
                 </p>
-                </div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 </section>

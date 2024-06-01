@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewBag.Title = "AdminMakaleDetay";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model Tuple<Articles, List<Comments>, List<Users>, List<CommentResponse>>
+
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11">
+                    <!-- breadcrumb-->
+                    @*<nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">Blog post</li>
+                            </ol>
+                        </nav>*@
+                </div>
+                <div id="blog-post" class="col-lg-11">
+                    <div class="box">
+
+
+
+                        <input type="hidden" id="articleId" name="name" value="@Model.Item1.ArticleId" />
+
+
+                        <p class="author-date">
+                            Yazan <a href="#">
+                                @foreach (var u in Model.Item3)
+                                {
+                                    if (u.UsersId == Model.Item1.UserId)
+                                    {
+                                        @u.UserName
+
+                                    }
+
+                                }
+                            </a> |  @Model.Item1.CreateDate
+                        </p>
+
+                        <div id="post-content">
+                            <p>
+                                <h2>@Model.Item1.Title</h2>
+                            </p>
+                            <p>
+                                @Html.Raw(Model.Item1.Content)
+                            </p>
+
+                        </div>
+                        <!-- /#post-content-->
+                        <div id="comments">
+                            <h4> Yorumlar</h4>
+
+                            @*@{var yorumNo = 1; }*@
+                        <div id="commentline">
+                            @foreach (var comment in Model.Item2)
+                            {
+
+                                <input type="hidden" id="commentId" name="name" value="@comment.CommetId" />
+                                <div class="row comment">
+                                    <div class="col-md-1 col-lg-1 text-center text-md-center">
+                                        @*<p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>*@
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+
+                                        @foreach (var u in Model.Item3)
+                                        {
+                                            if (u.UsersId == comment.UserId)
+                                            {
+
+                                                <h5 style="font-weight: bold;">
+                                                    @u.UserName
+                                                </h5>
+                                                break;
+                                            }
+
+                                        }
+
+                                    <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate.Date</p>
+                                        <p> @Html.Raw(comment.Content) </p>
+
+                                        @*yorumlara cevap vermek için aşağıdaki kod*@
+
+                                        <div id="commentResponse">
+
+                                            <div class="row">
+                                                @foreach (var res in Model.Item4)
+                                                {
+                                                    if (res.CommentId == comment.CommetId)
+                                                    {<div class="col-2"></div>
+                                                        <div class="col-10">
+                                                            @foreach (var user in Model.Item3)
+                                                            {
+                                                                if (user.UsersId == res.UserId)
+                                                                {<h5>
+                                                                        @user.UserName
+                                                                    </h5>
+                                                                    break;
+                                                                }
+
+                                                            }
+
+                                                            <p class='posted'><i class='fa fa-clock-o'></i> @res.CreateDate</p>
+                                                            <p> @Html.Raw(res.ResponseContent) </p>
+
+                                                        </div>
+                                                    }
+
+                                                }
+                                            </div>
+                                        </div>
+                                        @*<a href="#" class="reply-link" data-comment-id="@comment.CommetId">Yanıtla</a>*@
+
+                                        @*<div id="replyForm_@comment.CommetId" class="reply-form" style="display: none;">
+                                            <form id="cevapFormu_@comment.CommetId">
+                                                <div class="form-group">
+                                                    <label for="cevapMail">Email <span class="required">*</span></label>
+                                                    <input id="cevapMailAdresi_@comment.CommetId" name="cevapMail" type="text" class="form-control" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="cevapMetni">Cevap:</label>
+                                                    <textarea id="cevapMetni_@comment.CommetId" class="form-control" rows="3"></textarea>
+                                                </div>
+                                                <button type="button" class="btn btn-primary cevap-gonder-btn" onclick="ReplayMethod(" @comment.CommetId +")">Gönder</button>
+                                            </form>
+                                        </div>*@
+
+
+
+
+
+
+
+                                        @*yorum cevap kısmı sonu*@
+
+
+
+                                    </div>
+                                </div>
+
+                            }
+                            
+
+                        </div>
+                            <!-- /#comments-->
+                            @*<div id="comment-form">
+                                <h4>Yorum yap</h4>
+                                <form id="yorumYap" method="post">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email <span class="required">*</span></label>
+                                                <input id="gelenMailAdresi" name="email" type="text" class="form-control" />
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="form-group">
+                                                <label for="comment">Yorum <span class="required">*</span></label>
+                                                <textarea id="comment" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-comment-o"></i> Yorum ekle</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            @ViewBag.Message
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>*@
+                            <!-- /#comment-form-->
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /#blog-post-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/distribution/js/map.js"></script>
+<script src="~/distribution/js/front.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.min.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
+

@@ -17,6 +17,7 @@
           <Property Name="CreateDate" Type="date" Nullable="false" />
           <Property Name="Views" Type="int" Nullable="false" />
           <Property Name="Likes" Type="int" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -110,6 +111,7 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Views" Type="Int32" Nullable="false" />
           <Property Name="Likes" Type="Int32" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -198,6 +200,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="MyBlogSiteDBModel.Articles">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

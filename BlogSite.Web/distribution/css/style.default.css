@@ -653,7 +653,7 @@ h1 {
   font-size: 0.738rem;
 }
 
-#content .card.sidebar-menu .card label::hover {
+#content .card.sidebar-menu .card label:hover {
   color: #555;
 }
 
@@ -741,8 +741,8 @@ h1 {
 
 #content .product .flip-container {
   cursor: pointer;
-  -webkit-perspective: 1000;
-  perspective: 1000;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -2516,7 +2516,7 @@ a.text-dark:hover, a.text-dark:focus {
   color: #6c757d;
 }
 
-.form-control::-ms-input-placeholder {
+.form-control :-ms-input-placeholder {
   color: #6c757d;
 }
 

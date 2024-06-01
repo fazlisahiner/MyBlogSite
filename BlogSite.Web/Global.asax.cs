@@ -13,6 +13,8 @@ namespace BlogSite.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //HttpRequestValidationException.RequestValidationSource.AddDomains("pathToYourDomain");
+            //HttpRequestValidationException.RequestValidationSource.Add(HttpRequestValidationException.RequestValidationSource.List, "/AdminPanel/Articles/MakaleGuncelle");
         }
     }
 }

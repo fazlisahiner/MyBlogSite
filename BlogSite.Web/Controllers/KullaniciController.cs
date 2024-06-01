@@ -12,7 +12,10 @@ namespace BlogSite.Web.Controllers
     {
         // GET: Kullanici
         public ActionResult Index()
+
         {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.CategoryList = db.Categories.ToList();
             return View();
         }
 

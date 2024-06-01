@@ -34,21 +34,38 @@
                             </div>
                         </div>
                         @*<input id="icerik" type="hidden" value=" @Html.EditorFor(model => (model.Content), new { htmlAttributes = new { @class = "form-control" } })
- @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })" />*@
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })" />*@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                               
 
-                                @*@Html.EditorFor(model => (model.Content), new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })*@
 
                                 @Html.EditorFor(model => (model.Content), new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
 
-                                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+
+                                @*<div id="summernote">
+                                        @Html.Raw(Model.Content)
+                                    </div>
+
+                                    @Html.HiddenFor(model => model.Content, new { id = "HiddenContent" })*@
+                                @* bunun başka bir yolu var yapay zekaya sordum söyledi
+                                *@
+
+
+
+                                @*@Html.EditorFor(model => (model.Content), new { htmlAttributes = new { @class = "form-control" } })
+
+                                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })*@
+
+                                <div id="summernoteArea">
+                                    @Html.Raw(Model.Content)
+                                </div>
+
 
                             </div>
+                            @Html.HiddenFor(model => model.Content, new { id = "HiddenContent" })
                         </div>
 
                         <div class="form-group">
@@ -107,15 +124,36 @@
     </div>
 </section>
 
-<script>
-    $(function () {
-        // Summernote
-        $('#summernote').summernote()
+@*<script>
+        $(function () {
+            // Summernote
+            $('#summernote').summernote().on('summernote.change', function () {
+                $('#HiddenContent').val($('#summernote').summernote('code'));
 
-        /* CodeMirror*/
-        //CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-        //    mode: "htmlmixed",
-        //    theme: "monokai"
-        //});
-    })
-</script>
+                /* CodeMirror*/
+                //CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                //    mode: "htmlmixed",
+                //    theme: "monokai"
+                //});
+            })
+    </script>*@
+@*<script>
+    $(document).ready(function () {
+        $('#summernoteArea').summernote();
+
+        $('#summernoteArea').summernote().on('summernote.change', function () {
+            $('#HiddenContent').val($('#summernoteArea').summernote('code'));
+        });
+    });
+</script>*@
+
+
+
+    <script>
+        $(function () {  $('#summernoteArea').summernote();
+
+        $('#summernoteArea').summernote().on('summernote.change', function () {
+            $('#HiddenContent').val($('#summernoteArea').summernote('code'));
+        })
+        }
+    </script>

@@ -10,6 +10,7 @@ $(function () {
         thumbsPrerendered: true
     });
 
+   
 
     $('#main-slider').owlCarousel({
         items: 1,

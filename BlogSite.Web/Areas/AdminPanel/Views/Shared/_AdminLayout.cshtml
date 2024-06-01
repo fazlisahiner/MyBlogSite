@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    @*<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">*@
+    @Html.AntiForgeryToken()
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -259,6 +261,9 @@
         <!-- /.content-wrapper -->
         <div class=" content-wrapper">
             @RenderBody()
+
+
+            @RenderSection("Scripts", required: false)
         </div>
 
 
@@ -310,6 +315,7 @@
     <script src="/Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
     <script src="/Admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="/Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
@@ -324,10 +330,10 @@
             $('#summernote').summernote()
 
             // CodeMirror
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-                mode: "htmlmixed",
-                theme: "monokai"
-            });
+            //CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            //    mode: "htmlmixed",
+            //    theme: "monokai"
+            //});
         })</script>
 </body>
 

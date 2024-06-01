@@ -1,4 +1,5 @@
 ﻿using BlogSite.Web;
+using BlogSite.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,11 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using BlogSite.Web.Areas.AdminPanel.Models;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Text.RegularExpressions;
+using HtmlAgilityPack;
 
 namespace BlogSite.Web.Areas.AdminPanel.Controllers
 {
@@ -15,6 +21,8 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         public ActionResult ArticlesIndex()
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Users = db.Users.ToList();
             var makaleList = db.Articles.ToList();
             return View(makaleList);
         }
@@ -94,12 +102,21 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
 
         }
 
-        public ActionResult ArticleDetail(int id)
-        {
-            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
-            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
-            return View(getArticle);
-        }
+        //public ActionResult ArticleDetail(int id)
+        //{
+        //    MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+        //    var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+        //    //Listeler model = new Listeler();
+        //    //model.Userslar = db.Users.ToList();
+        //    //model.Categoriesler = db.Categories.ToList();
+        //    //model.Makale = getArticle;
+
+        //    //ViewBag.Categories = db.Categories.ToList();
+        //    //ViewBag.Users = db.Users.ToList();
+            
+        //    //ViewBag.User = db.Users.Where(u => u.UsersId == getArticle.UserId);
+        //    return View(getArticle);
+        //}
 
         public ActionResult ArticleEdit (int id)
         {
@@ -116,6 +133,92 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
             return View(getArticle);
         }
+
+        public ActionResult MakaleDetayi(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+            var getUser = db.Users.Where(us => us.UsersId == getArticle.UserId).FirstOrDefault();
+            var getCategory = db.Categories.Where(cat => cat.CategoryId == getArticle.CategoryId).FirstOrDefault();
+
+            MakaleDetay model = new MakaleDetay();
+
+            model.Article = getArticle;
+            model.User = getUser;
+            model.Category = getCategory;
+
+            return View(model);
+        }
+
+        public ActionResult MakaleGuncelle(int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+
+
+            var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+
+            if (getArticle == null) {
+                return HttpNotFound();
+            }
+            else {
+            //var getUser = db.Users.Where(us => us.UsersId == getArticle.UserId).FirstOrDefault();
+            //var getCategory = db.Categories.Where(cat => cat.CategoryId == getArticle.CategoryId).FirstOrDefault();
+
+            MakaleDetay model = new MakaleDetay();
+
+            model.Article = getArticle;
+            //model.User = getUser;
+            //model.Category = getCategory;
+            //model.Users = db.Users.ToList();
+            //model.Categories = db.Categories.ToList();
+
+            return View(model);
+            }
+        }
+        
+        [ValidateInput(false),  HttpPost]
+        public ActionResult MakaleGuncelle(MakaleDetay model)
+        {
+            
+
+            if (ModelState.IsValid)
+            {
+                using (MyBlogSiteDBEntities db = new MyBlogSiteDBEntities())
+                {
+                    var makale = db.Articles.Where(k => k.ArticleId == model.Article.ArticleId).FirstOrDefault();
+                    if (makale == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    makale.Title = model.Article.Title;
+                  
+
+
+                    //makale.Content = HttpUtility.HtmlEncode(model.Article.Content);
+
+                    makale.Content =  model.Article.Content;
+
+                   
+                    makale.UpdateDate = DateTime.Now;
+                    
+
+                    db.Entry(makale).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                   
+
+                    return RedirectToAction("ArticlesIndex");
+                }
+            }
+            else
+            {
+                TempData["SummernoteIcerik"] = model.Article.Content;
+                return View(model);
+            }
+
+        }
+
     }
 }
 

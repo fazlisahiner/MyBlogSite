@@ -20,7 +20,7 @@ namespace BlogSite.Web.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             ViewBag.CategoryList = db.Categories.ToList();
-            
+
 
             if (id==null)
             {
@@ -28,7 +28,8 @@ namespace BlogSite.Web.Controllers
                 var getAllCategories = db.Categories.ToList();
                 var allUsers = db.Users.ToList();
                 var comment = db.Comments.ToList();
-                
+                ViewBag.CategoryList = db.Categories.ToList();
+
                 return View(Tuple.Create(getAllCategories, getAllArticles, allUsers, comment));
                 //return View(getAllArticles);
             }
@@ -38,12 +39,12 @@ namespace BlogSite.Web.Controllers
                 var getAllCategories = db.Categories.ToList();
                 var allUsers = db.Users.ToList();
                 var comment = db.Comments.ToList();
-              
+                
 
                 return View(Tuple.Create(getAllCategories, getArticleWithCategory, allUsers, comment));
                // return View(getArticleWithCategory);
             }
-      
+            
         }
 
        
