@@ -11,13 +11,11 @@ namespace BlogSite.Web
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class Articles
     {
         public int ArticleId { get; set; }
         public string Title { get; set; }
-        [AllowHtml]
         public string Content { get; set; }
         public int UserId { get; set; }
         public int CategoryId { get; set; }

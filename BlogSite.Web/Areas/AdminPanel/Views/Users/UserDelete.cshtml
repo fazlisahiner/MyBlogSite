@@ -26,13 +26,13 @@
                             @Html.DisplayFor(model => model.UserName)
                         </dd>
 
-                        <dt>
+                        @*<dt>
                             @Html.DisplayNameFor(model => model.UserPassword)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.UserPassword)
-                        </dd>
+                        </dd>*@
 
                         <dt>
                             @Html.DisplayNameFor(model => model.EMail)
@@ -42,13 +42,13 @@
                             @Html.DisplayFor(model => model.EMail)
                         </dd>
 
-                        <dt>
+                        @*<dt>
                             @Html.DisplayNameFor(model => model.RoleId)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.RoleId)
-                        </dd>
+                        </dd>*@
 
                         <dt>
                             @Html.DisplayNameFor(model => model.IsActive)
@@ -68,15 +68,22 @@
 
                     </dl>
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("UserDeleteConfirmed", "Users", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
 
+                        <input type="hidden" name="id" value="@Model.UsersId" />
+
                         <div class="form-actions no-color">
-                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                            @Html.ActionLink("Back to List", "UsersIndex")
+                            <input type="submit" value="Sil" class="btn btn-danger" /> 
+                           
                         </div>
                     }
+                    <br />
+                <div> @Html.ActionLink("Listeye geri dön", "UsersIndex")</div>
+
+
+
                 </div>
             </div>
 

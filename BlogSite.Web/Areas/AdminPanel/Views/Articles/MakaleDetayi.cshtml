@@ -32,7 +32,7 @@
                         </dt>
 
                         <dd>
-                            @Html.Raw( Model.Article.Content )
+                            @Html.Raw(Model.Article.Content)
                         </dd>
                         <dt>
                             Kategori
@@ -49,6 +49,26 @@
                         <dd>
                             @Model.User.UserName
                         </dd>
+
+                        <dt>
+                            Eklenme Tarihi
+                        </dt>
+
+                        <dd>
+                            @Model.Article.CreateDate.Date
+                        </dd>
+
+                        <dt>
+                            Son Güncellenme tarihi
+                        </dt>
+
+                        <dd>
+                            @Model.Article.UpdateDate
+                        </dd>
+
+
+
+
                     </dl>
                 </div>
                 <p>

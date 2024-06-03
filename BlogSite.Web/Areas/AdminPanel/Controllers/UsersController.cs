@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using BlogSite.Web.Areas.AdminPanel.Models;
 
 namespace BlogSite.Web.Areas.AdminPanel.Controllers
 {
@@ -107,23 +109,102 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
-            return View(getUser);
+            if (getUser == null)
+            {
+                return HttpNotFound();
+            }
+            var Rol = db.Roles.Where(k => k.RoleId == getUser.RoleId).FirstOrDefault();
+
+
+            UserDetay model = new UserDetay();
+            model.User = getUser;
+            model.Role = Rol;
+
+            return View(model);
         }
 
         public ActionResult UserEdit(int id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+            if (getUser == null)
+            {
+                return HttpNotFound();
+            }
+            var Rol = db.Roles.Where(k => k.RoleId == getUser.RoleId).FirstOrDefault();
 
-            return View(getUser);
+            UserDetay model = new UserDetay();
+            model.User = getUser;
+           
+            model.Role = Rol;
+            model.Roles = db.Roles.ToList();
+
+            return View(model);
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserEdit(UserDetay model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (MyBlogSiteDBEntities db = new MyBlogSiteDBEntities())
+                {
+                    var getUser = db.Users.Where(k => k.UsersId == model.User.UsersId).FirstOrDefault();
+                    if (getUser == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    
+
+
+                    getUser.RoleId = model.User.RoleId;
+                    getUser.UserName = model.User.UserName;
+                    getUser.UserPassword = model.User.UserPassword;
+                    getUser.IsActive = model.User.IsActive;
+                    getUser.UpdateDate = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("UsersIndex");
+
+                }
+            }
+            return View(model);
+        }
+
 
         public ActionResult UserDelete(int id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+
+            if (getUser == null)
+            {
+                return HttpNotFound();
+            }
             return View(getUser);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserDeleteConfirmed (int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getUser = db.Users.Where(k => k.UsersId == id).FirstOrDefault();
+            if (getUser == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Users.Remove(getUser);
+            db.SaveChanges();
+
+            return RedirectToAction("UsersIndex");
+
+
+        }
+
     }
 }

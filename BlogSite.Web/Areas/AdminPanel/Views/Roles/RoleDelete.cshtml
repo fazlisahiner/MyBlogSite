@@ -61,15 +61,22 @@
 
                     </dl>
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("RoleDeleteConfirmed", "Roles", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
 
+                        <input type="hidden" name="id" value="@Model.RoleId" />
                         <div class="form-actions no-color">
-                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                            @Html.ActionLink("Back to List", "RolesIndex")
+                            <input type="submit" value="Sil" class="btn btn-danger" /> 
+                            
                         </div>
                     }
+                    <p></p>
+                    <div>
+                        @Html.ActionLink("Listeye geri dön", "RolesIndex")
+                    </div>
+
+
                 </div>
             </div>
         </div>

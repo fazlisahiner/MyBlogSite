@@ -1,4 +1,4 @@
-﻿@model BlogSite.Web.Users
+﻿@model BlogSite.Web.Areas.AdminPanel.Models.UserDetay
 
 @{
     ViewBag.Title = "UserDetail";
@@ -18,58 +18,73 @@
 
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.UserName)
+                            @Html.DisplayNameFor(model => model.User.UserName)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.UserName)
+                            @Html.DisplayFor(model => model.User.UserName)
+                        </dd>
+
+                        @*<dt>
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPassword)
+        </dd>*@
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.User.EMail)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.User.EMail)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.UserPassword)
+                            @Html.DisplayNameFor(model => model.Role.RoleName)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.UserPassword)
+                            @Html.DisplayFor(model => model.Role.RoleName)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.EMail)
+                            Role @Html.DisplayNameFor(model => model.Role.Description)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.EMail)
+                            @Html.DisplayFor(model => model.Role.Description)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.RoleId)
+                            @Html.DisplayNameFor(model => model.User.IsActive)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.RoleId)
+                            @Html.DisplayFor(model => model.User.IsActive)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.IsActive)
+                            @Html.DisplayNameFor(model => model.User.CreateDate)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.IsActive)
+                            @Html.DisplayFor(model => model.User.CreateDate)
                         </dd>
-
                         <dt>
-                            @Html.DisplayNameFor(model => model.CreateDate)
+                            @Html.DisplayNameFor(model => model.User.UpdateDate)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.CreateDate)
+                            @Html.DisplayFor(model => model.User.UpdateDate)
                         </dd>
 
                     </dl>
                 </div>
                 <p>
-                    @Html.ActionLink("Edit", "UserEdit", new { id = Model.UsersId }) |
-                    @Html.ActionLink("Back to List", "UsersIndex")
+                    @Html.ActionLink("Düzenle", "UserEdit", new { id = Model.User.UsersId }) |
+                    @Html.ActionLink("Listeye geri dön", "UsersIndex")
                 </p>
             </div>
         </div>

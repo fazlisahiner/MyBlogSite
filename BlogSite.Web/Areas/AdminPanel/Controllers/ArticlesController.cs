@@ -17,6 +17,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
 {
     public class ArticlesController : Controller
     {
+        MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
         // GET: AdminPanel/Articles
         public ActionResult ArticlesIndex()
         {
@@ -118,6 +119,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         //    return View(getArticle);
         //}
 
+        // ArticleEdit metodu kullanılmıyor, onun yerine MakaleGuncelle metodu kullanılıyor.
         public ActionResult ArticleEdit (int id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
@@ -126,13 +128,41 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             return View(getArticle);
 
         }
+        // ArticleEdit metodu kullanılmıyor, onun yerine MakaleGuncelle metodu kullanılıyor.
 
+        // GET: ArticleDelete
         public ActionResult ArticleDelete ( int id)
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+
             var getArticle = db.Articles.Where(k => k.ArticleId == id).FirstOrDefault();
+
+            if (getArticle == null)
+            {
+                return HttpNotFound();
+            }
             return View(getArticle);
         }
+
+        // POST: ArticleDelete
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArticleDeleteConfirmed(int id)
+        {
+            var getArticle = db.Articles.FirstOrDefault(k => k.ArticleId == id);
+            if (getArticle == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Articles.Remove(getArticle);
+            db.SaveChanges();
+
+            return RedirectToAction("ArticlesIndex");
+        }
+
+
 
         public ActionResult MakaleDetayi(int id)
         {

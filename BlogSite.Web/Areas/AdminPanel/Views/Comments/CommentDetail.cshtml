@@ -1,16 +1,18 @@
-﻿@model BlogSite.Web.Comments
+﻿
+@model Tuple<Comments, Users, Articles>
 
 @{
     ViewBag.Title = "CommentDetail";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
-@*@model Tuple <Comments, Users, Articles >*@
+
+@*<h2>CommentDetail</h2>*@
 
 <section class="content">
     <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-info">
-                <h3 class="card-title">Yorum Detay</h3>
+                <h3 class="card-title">Makale Detay</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -18,64 +20,54 @@
                 <div>
 
                     <dl class="dl-horizontal">
+                        
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.Item1.ArticleId)*@
-                            @Html.DisplayNameFor(model => model.ArticleId)
+                            İçerik
                         </dt>
 
                         <dd>
-                            @*@{ var makaleAdi = }*@
-
-
-                            @*@Html.DisplayFor(model => model.Item3.Title)*@
-                            @Html.DisplayFor(model => model.ArticleId)
+                            @Html.Raw(Model.Item1.Content)
                         </dd>
-
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.Item1.UserId)*@
-                            @Html.DisplayNameFor(model => model.UserId)
+                            Makale
                         </dt>
 
                         <dd>
-                            @*@Html.DisplayFor(model => model.Item2.UserName)*@
-                            @Html.DisplayFor(model => model.UserId)
+                            @Model.Item3.Title
+                            @*@Html.DisplayFor(model => model.CategoryName)*@
                         </dd>
-
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.Item1.Content)*@
-                            @Html.DisplayNameFor(model => model.Content)
+                            Yazar
                         </dt>
 
                         <dd>
-                            @*@Html.DisplayFor(model => model.Item1.Content)*@
-                            @Html.DisplayFor(model => model.Content)
+                            @Model.Item2.UserName
                         </dd>
 
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.Item1.CreateDate)*@
-                            @Html.DisplayNameFor(model => model.CreateDate)
+                            Eklenme Tarihi
                         </dt>
 
                         <dd>
-                            @*@Html.DisplayFor(model => model.Item1.CreateDate)*@
-                            @Html.DisplayFor(model => model.CreateDate)
+                            @Model.Item1.CreateDate.Date
                         </dd>
 
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.Item1.UpdateDate)*@
-                            @Html.DisplayNameFor(model => model.UpdateDate)
+                            Son Güncellenme tarihi
                         </dt>
 
                         <dd>
-                            @*@Html.DisplayFor(model => model.Item1.UpdateDate)*@
-                            @Html.DisplayFor(model => model.UpdateDate)
+                            @Model.Item1.UpdateDate
                         </dd>
+
+
+
 
                     </dl>
                 </div>
                 <p>
-                    @Html.ActionLink("Edit", "CommentEdit", new { id = Model.CommetId }) |
-                    @Html.ActionLink("Back to List", "CommentsIndex")
+                    @Html.ActionLink("Düzenle", "CommentEdit", new { id = Model.Item1.CommetId }) |
+                    @Html.ActionLink("Listeye geri dön", "CommentsIndex")
                 </p>
             </div>
         </div>

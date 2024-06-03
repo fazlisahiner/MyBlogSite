@@ -1,4 +1,7 @@
-﻿@model BlogSite.Web.Users
+﻿@using BlogSite.Web.Areas.AdminPanel.Models
+
+@model UserDetay
+
 
 @{
     ViewBag.Title = "UserEdit";
@@ -9,87 +12,85 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-info">
-                <h3 class="card-title">Düzenle</h3>
+                <h3 class="card-title">Kullanıcı Güncelle</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
 
 
-                @using (Html.BeginForm())
+                <div>
+                    <h3>@Model.User.UserName</h3>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                @using (Html.BeginForm("UserEdit", "Users", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.User.UsersId)
 
-                    <div class="form-horizontal">
-                        <h4>Users</h4>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.UsersId)
+                    @*<input type="hidden" name="Icerik" id="hiddenIcerik" value="" />*@
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                    <div>
+                        @Html.LabelFor(m => m.User.UserName, "Kullanıcı adı") :
+                        <br />
+                        @Html.TextBoxFor(m => m.User.UserName, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => m.User.UserPassword, "Şifre") :
+                        <br />
+                        @Html.TextBoxFor(m => m.User.UserPassword, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.EMail, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsActive)
-                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-default" />
-                            </div>
+                    <div>
+                        @Html.LabelFor(m => m.User.IsActive, "Aktiflik")
+                        <br />
+                        <div style="display: flex; justify-content: flex-start; margin-left:30px;"> 
+                             @Html.CheckBoxFor(m => m.User.IsActive, new { @class = "form-check-input" })
                         </div>
                     </div>
+                    <br />
+                    
+
+
+
+                    <div>
+                        @Html.LabelFor(m => m.User.RoleId, "Rol") :
+                        <br />
+                        @Html.DropDownListFor(m => m.User.RoleId, new SelectList(Model.Roles, "RoleId", "RoleName"), "Rol seç", new { @class = "form-control" })
+                    </div>
+
+
+                    <br />
+
+
+                    <button type="submit">Güncelle</button>
+
+
+
                 }
+                <p></p>
 
                 <div>
-                    @Html.ActionLink("Back to List", "UsersIndex")
+                    @Html.ActionLink("Listeye geri dön", "UsersIndex")
                 </div>
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
 </section>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

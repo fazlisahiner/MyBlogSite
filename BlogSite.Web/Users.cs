@@ -21,5 +21,6 @@ namespace BlogSite.Web
         public int RoleId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     }
 }

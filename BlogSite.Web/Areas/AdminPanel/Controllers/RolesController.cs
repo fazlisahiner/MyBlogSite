@@ -16,7 +16,7 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             var roleList = db.Roles.ToList();
             return View(roleList);
 
-           
+
         }
 
         public ActionResult RolesAdd()
@@ -65,6 +65,10 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            if (getRole == null)
+            {
+                return HttpNotFound();
+            }
             return View(getRole);
         }
 
@@ -72,8 +76,38 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            if (getRole == null)
+            {
+                return HttpNotFound();
+            }
 
             return View(getRole);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RoleEdit(Roles model)
+        {
+            if (ModelState.IsValid)
+            {
+                MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+                var getRole = db.Roles.Where(k => k.RoleId == model.RoleId).FirstOrDefault();
+                if (getRole == null)
+                {
+                    return HttpNotFound();
+                }
+                getRole.Permissions = model.Permissions;
+                getRole.RoleName = model.RoleName;
+                getRole.Description = model.Description;
+                getRole.UpdateDate = DateTime.Now;
+
+                db.SaveChanges();
+                return RedirectToAction("RolesIndex");
+
+            }
+
+            return View(model);
 
         }
 
@@ -81,8 +115,30 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            if (getRole == null)
+            {
+                return HttpNotFound();
+            }
             return View(getRole);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RoleDeleteConfirmed (int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getRole = db.Roles.Where(k => k.RoleId == id).FirstOrDefault();
+            if (getRole == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Roles.Remove(getRole);
+            db.SaveChanges();
+
+            return RedirectToAction("RolesIndex");
+        }
+
 
     }
 }

@@ -2342,6 +2342,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\RolesController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\UsersController.cs" />
     <Compile Include="Areas\AdminPanel\Models\MakaleDetay.cs" />
+    <Compile Include="Areas\AdminPanel\Models\UserDetay.cs" />
     <Compile Include="Articles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2757,7 +2758,6 @@
     <Content Include="Areas\AdminPanel\Views\Comments\CommentsIndex.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Comments\CommentsAdd.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Users\UserAdd.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Articles\ArticleEdit.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Articles\ArticleDelete.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Categories\CategoryDetail.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Categories\CategoryEdit.cshtml" />

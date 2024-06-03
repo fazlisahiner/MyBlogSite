@@ -29,15 +29,21 @@
 
                     </dl>
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("CategoryDeleteConfirmed", "Categories", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
 
+                        <input type="hidden" name="id" value="@Model.CategoryId"/>
+
                         <div class="form-actions no-color">
-                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                            @Html.ActionLink("Listeye geri dön", "CategoryIndex")
+                            <input type="submit" value="Sil" class="btn btn-default" /> 
+                           
                         </div>
                     }
+                    <p></p>
+                    <div>
+                        @Html.ActionLink("Listeye geri dön", "CategoryIndex")
+                    </div>
                 </div>
             </div>
         </div>

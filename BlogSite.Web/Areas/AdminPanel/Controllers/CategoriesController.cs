@@ -69,6 +69,13 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
+
+            if (getCategory == null)
+            {
+                return HttpNotFound();
+            }
+
+
             return View(getCategory);
         }
 
@@ -77,7 +84,31 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
 
+            if (getCategory == null)
+            {
+                return HttpNotFound();
+            }
             return View(getCategory);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoryEdit (Categories model)
+        {
+            if (ModelState.IsValid)
+            {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+                var getCategory = db.Categories.Where(k=> k.CategoryId == model.CategoryId).FirstOrDefault();
+                if (getCategory == null)
+                {
+                    return HttpNotFound();
+                }
+                getCategory.CategoryName = model.CategoryName;
+                db.SaveChanges();
+                return RedirectToAction("CategoryIndex");
+
+            }
+            return View(model);
 
         }
 
@@ -85,9 +116,32 @@ namespace BlogSite.Web.Areas.AdminPanel.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             var getCategory = db.Categories.Where(k => k.CategoryId == id).FirstOrDefault();
+
+            if (getCategory == null)
+            {
+                return HttpNotFound();
+            }
             return View(getCategory);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoryDeleteConfirmed (int id)
+        {
+            MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
+            var getCategory = db.Categories.Where(k=> k.CategoryId==id).FirstOrDefault();
+
+            if ( getCategory== null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Categories.Remove(getCategory);
+            db.SaveChanges();
+
+            return RedirectToAction("CategoryIndex");
+
+        }
 
 
 

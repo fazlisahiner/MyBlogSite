@@ -70,6 +70,7 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" />
         </EntityType>
         <Association Name="FK_CommentResponse_CommentResponse">
           <End Role="CommentResponse" Type="Self.CommentResponse" Multiplicity="1" />
@@ -153,6 +154,7 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityContainer Name="MyBlogSiteDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Articles" EntityType="Self.Articles" />
@@ -247,6 +249,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MyBlogSiteDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
