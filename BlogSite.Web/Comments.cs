@@ -16,9 +16,10 @@ namespace BlogSite.Web
     {
         public int CommetId { get; set; }
         public int ArticleId { get; set; }
-        public int UserId { get; set; }
+        public Nullable<int> UserId { get; set; }
         public string Content { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime UpdateDate { get; set; }
+        public string UserName { get; set; }
     }
 }

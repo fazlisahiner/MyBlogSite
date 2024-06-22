@@ -10,7 +10,7 @@ namespace BlogSite.Web.Models
         public int CommentID { get; set; }
         public string YorumCevapMetni { get; set; }
         public string UserName { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public DateTime ResponseDate { get; set; }
     }
 }

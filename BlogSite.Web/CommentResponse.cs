@@ -16,10 +16,11 @@ namespace BlogSite.Web
     {
         public int ResponseId { get; set; }
         public string ResponseContent { get; set; }
-        public int UserId { get; set; }
+        public Nullable<int> UserId { get; set; }
         public int CommentId { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int ArticleId { get; set; }
+        public string UserName { get; set; }
     
         public virtual CommentResponse CommentResponse1 { get; set; }
         public virtual CommentResponse CommentResponse2 { get; set; }

@@ -49,9 +49,9 @@
                         </p>
 
                         <div id="post-content" style=" width: 100%;">
-                            
-                                <h2>@Model.Item1.Title</h2>
-                            
+
+                            <h2>@Model.Item1.Title</h2>
+
                             <div>
                                 @Html.Raw(Model.Item1.Content.ToString())
                             </div>
@@ -73,47 +73,50 @@
                                         </div>
                                         <div class="col-md-9 col-lg-10">
 
-                                            @foreach (var u in Model.Item3)
-                                            {
-                                                if (u.UsersId == comment.UserId)
-                                                {
+                                            @*@foreach (var u in Model.Item3)
+        {
+            if (u.UsersId == comment.UserId)
+            {
 
-                                                    <h5>
-                                                        @u.UserName
-                                                    </h5>
-                                                    break;
-                                                }
+                <h5>
+                    @u.UserName
+                </h5>
+                break;
+            }
 
-                                            }
+        }*@
+
+                                            @comment.UserName
+
 
                                             <p class="posted"><i class="fa fa-clock-o"></i> @comment.CreateDate</p>
                                             <p> @Html.Raw(comment.Content) </p>
 
                                             @*yorumlara cevap vermek için aşağıdaki kod*@
 
-                                            <div id="commentResponse">
+                                            @*<div id="commentResponse">
 
                                                 <div class="row">
                                                     @foreach (var res in Model.Item4)
                                                     {
                                                         if (res.CommentId == comment.CommetId)
                                                         {<div class="col-3"></div>
-                                                         <div class="col-9">
-                                                             @foreach (var user in Model.Item3)
-                                                             {
-                                                                 if (user.UsersId == res.UserId)
-                                                                 {<h5>
-                                                                         @user.UserName
-                                                                     </h5>
-                                                                     break;
-                                                                 }
+                                                            <div class="col-9">
+                                                                @foreach (var user in Model.Item3)
+                                                                {
+                                                                    if (user.UsersId == res.UserId)
+                                                                    {<h5>
+                                                                            @user.UserName
+                                                                        </h5>
+                                                                        break;
+                                                                    }
 
-                                                             }
+                                                                }
 
-                                                             <p class='posted'><i class='fa fa-clock-o'></i> @res.CreateDate</p>
-                                                             <p> @Html.Raw(res.ResponseContent) </p>
+                                                                <p class='posted'><i class='fa fa-clock-o'></i> @res.CreateDate</p>
+                                                                <p> @Html.Raw(res.ResponseContent) </p>
 
-                                                         </div>
+                                                            </div>
                                                         }
 
                                                     }
@@ -125,19 +128,63 @@
                                                 <form id="cevapFormu_@comment.CommetId">
                                                     <div class="form-group">
                                                         <label for="InputCevapMail">Email <span class="required">*</span></label>
-                                                        <input name="InputCevapMail" id="cevapMailAdresi_@comment.CommetId"  type="text" class="form-control" />
+                                                        <input name="InputCevapMail" id="cevapMailAdresi_@comment.CommetId" type="text" class="form-control" />
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="TextCevapMetni">Cevap:</label>
-                                                        <textarea name="TextCevapMetni" id="cevapMetni_@comment.CommetId" class="form-control" rows="3" ></textarea>
+                                                        <textarea name="TextCevapMetni" id="cevapMetni_@comment.CommetId" class="form-control" rows="3"></textarea>
                                                     </div>
-                                                    <button type="button" class="btn btn-primary cevap-gonder-btn" onclick="ReplayMethod("@comment.CommetId+")">Gönder</button>
+                                                    <button type="button" class="btn btn-primary cevap-gonder-btn" onclick="ReplayMethod(" @comment.CommetId +")">Gönder</button>
+                                                </form>
+                                            </div>*@
+
+
+
+
+                                            @*Bu kısmı üsttekinin yerine yeniden yazfım  *@
+
+
+
+                                            <div id="commentResponse_@comment.CommetId">
+                                                <div class="row">
+                                                    @foreach (var res in Model.Item4)
+                                                    {
+                                                        if (res.CommentId == comment.CommetId)
+                                                        {
+                                                            <div class="col-2"></div>
+                                                            <div class="col-10">
+                                                                @*@foreach (var user in Model.Item3)
+                                                                {
+                                                                    if (user.UsersId == res.UserId)
+                                                                    {
+                                                                        <h5>@user.UserName</h5>
+                                                                        break;
+                                                                    }
+                                                                }*@
+
+                                                                @res.UserName
+                                                                <p class='posted'><i class='fa fa-clock-o'></i> @res.CreateDate</p>
+                                                                <p>@Html.Raw(res.ResponseContent)</p>
+                                                            </div>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <a href="#" class="reply-link" data-comment-id="@comment.CommetId"><i class="fa fa-reply"></i> Yanıtla</a>
+                                            <div id="replyForm_@comment.CommetId" class="reply-form" style="display: none; margin-left: 20px;">
+                                                <form id="cevapFormu_@comment.CommetId">
+                                                    <div class="form-group">
+                                                        <label for="InputCevapMail">Email <span class="required">*</span></label>
+                                                        <input name="InputCevapMail" id="cevapMailAdresi_@comment.CommetId" type="text" class="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="TextCevapMetni">Cevap:</label>
+                                                        <textarea name="TextCevapMetni" id="cevapMetni_@comment.CommetId" class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary cevap-gonder-btn" data-comment-id="@comment.CommetId">Gönder</button>
                                                 </form>
                                             </div>
-
-
-
 
 
 
@@ -201,53 +248,241 @@
     </div>
 </div>
 <script src="~/distribution/js/map.js"></script>
-    <script src="~/distribution/js/front.js"></script>
-    <script src="~/distribution/vendor/jquery/jquery.js"></script>
-    <script src="~/distribution/vendor/jquery/jquery.min.js"></script>
-    <script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
-    <script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
+<script src="~/distribution/js/front.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.min.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.js"></script>
+<script src="~/distribution/vendor/jquery/jquery.slim.min.js"></script>
 
-    <script>
+<script>
 
+    //function YorumEkle()
+    //{
+    //    var articleId = document.getElementById("articleId").value;
+    //    var yoruMetin = document.getElementById("comment").value;
+    //    var email = document.getElementById("gelenMailAdresi").value;
+
+
+
+
+
+    //    //debugger;
+    //    $.ajax
+    //        ({
+    //            url: "/Makaleler/YorumEkle",
+    //            type: 'POST',
+    //            //data: { id: id, userId: userId, yorumMetin: yorumMetin },
+    //            data: { "articleid": articleId, "yorumMetin": yoruMetin, "email": email },
+    //            success: function (result) {
+    //                debugger;
+    //                if (result != null) {
+    //                    var ekleYorumSatiri = document.getElementById("commentline");
+    //                    var isim = result.UserName;
+
+    //                    //with (ekleYorumSatiri) {
+    //                    //    append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>')
+    //                    //}
+
+    //                    $('#commentline').append('<div class="row comment"><div class="col-md-1 col-lg-1 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class=" Reply"><a href="#" class="reply-link" data-comment-id="' + result.CommetId + '"><i class="fa fa-reply"></i> Yanıtla</a></p></div></div>');
+    //                    //alert('Yorum eklendi');
+    //                }
+
+
+
+    //            },
+    //            error: function () {
+
+    //                alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
+
+    //                // debugger;
+    //            }
+
+    //        });
+    //}
+
+
+    //$('#yorumYap').submit(function (event) {
+    //    event.preventDefault(); // Formun gönderimini engelle
+    //    YorumEkle(); // AJAX isteğini gönder
+    //});
+
+
+
+    // yukardakilerin yerine bunları yazdım **
+
+    function YorumEkle() {
+        var articleId = document.getElementById("articleId").value;
+        var yorumMetin = document.getElementById("comment").value;
+        var email = document.getElementById("gelenMailAdresi").value;
+
+        $.ajax({
+            url: "/Makaleler/YorumEkle",
+            type: 'POST',
+            data: { "articleid": articleId, "yorumMetin": yorumMetin, "email": email },
+            success: function (result) {
+                if (result.success) {
+                    var comment = result.comment;
+                    $('#commentline').append('<div class="row comment"><div class="col-md-1 col-lg-1 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + comment.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + formatJsonDate(comment.CommentDatetime) + '</p><p>' + comment.CommentContent + '</p><p class="Reply"><a href="#" class="reply-link" data-comment-id="' + comment.CommetId + '"><i class="fa fa-reply"></i> Yanıtla</a></p></div></div>');
+                } else {
+                    alert(result.message || 'Yorum eklenirken bir hata oluştu.');
+                }
+            },
+            error: function () {
+                alert('Conrollerdan result gelmedi.');
+            }
+        });
+    }
+
+    $('#yorumYap').submit(function (event) {
+        event.preventDefault(); // Formun gönderimini engelle
+        YorumEkle(); // AJAX isteğini gönder
+    }); // buraya kadardı  **
+
+
+
+
+    //$(document).ready(function ()
+    //{
+    //    $(".reply-link").click(function (event) {
+    //        event.preventDefault(); // Sayfa yenilenmesini engelle
+    //        var commentId = $(this).data("comment-id");
+    //        $("#replyForm_" + commentId).show();
+    //    });
+
+    //    $(".cevap-gonder-btn").click(function () {
+    //        var commentId = $(this).closest("div.reply-form").attr("id").replace("replyForm_", "");
+    //        var cevapMetni = $("#cevapMetni_" + commentId).val();
+    //        var cevapVerenMail = $("cevapMailAdresi_" + commentId).val();
+    //        var articleId = $("#articleId").val();
+
+
+    //        $.ajax({
+    //            url: "/Makaleler/YorumCevapla",
+    //            type: 'POST',
+    //            data: { "yorumId": commentId, "cevapMetni": cevapMetni, "cevapVerenMail": cevapVerenMail, "articleId": articleId },
+    //            success: function (result) {
+
+    //                if (result != null) {
+    //                    var yorumCevapDiv = $("#commentResponse");
+    //                    yorumCevapDiv.append(
+    //                        " <div class='row'>         <div class='col-1'></div>   <div class='col-10'><h5>" + result.UserName + " </h5><p class='posted'><i class='fa fa-clock-o'></i>" + result.ResponseDate + "</p> <p>" + result.CommentContent + " </p></div></div>"
+    //                    )
+
+
+
+    //                    alert('Cevabınız başarıyla gönderildi!');
+    //                }
+
+
+
+
+
+    //                // Başarılı gönderim sonrası yapılacak işlemler
+    //            },
+    //            error: function () {
+    //                alert('Bir hata oluştu, lütfen tekrar deneyin.');
+    //            }
+    //        });
+    //    });
+    //});
+
+
+    //$(document).ready(function () {
+    //    $(".reply-link").click(function (event) {
+    //        event.preventDefault(); // Sayfa yenilenmesini engelle
+    //        var commentId = $(this).data("comment-id");
+    //        $("#replyForm_" + commentId).toggle();
+    //    });
+
+    //    $(".cevap-gonder-btn").click(function (event) {
+    //        event.preventDefault();
+    //        var commentId = $(this).data("comment-id");
+    //        var cevapMetni = $("#cevapMetni_" + commentId).val();
+    //        var cevapVerenMail = $("#cevapMailAdresi_" + commentId).val();
+    //        var articleId = $("#articleId").val();
+
+    //        $.ajax({
+    //            url: "/Makaleler/YorumCevapla",
+    //            type: 'POST',
+    //            data: { "yorumId": commentId, "cevapMetni": cevapMetni, "cevapVerenMail": cevapVerenMail, "articleId": articleId },
+    //            success: function (result) {
+    //                if (result.success) {
+    //                    var response = result.response;
+    //                    var yorumCevapDiv = $("#commentResponse");
+
+    //                    yorumCevapDiv.append(
+    //                        "<div class='row' style='margin-left: 20px;'>" +
+    //                        "<div class='col-1'></div>" +
+    //                        "<div class='col-10'>" +
+    //                        "<h5>" + response.UserName + "</h5>" +
+    //                        "<p class='posted'><i class='fa fa-clock-o'></i> " + formatJsonDate(response.ResponseDate) + "</p>" +
+    //                        "<p>" + response.YorumCevapMetni + "</p>" +
+    //                        "</div>" +
+    //                        "</div>"
+    //                    );
+
+    //                    alert('Cevabınız başarıyla gönderildi!');
+    //                    $("#replyForm_" + commentId).hide();
+    //                } else {
+    //                    alert(result.message || 'Bir hata oluştu, lütfen tekrar deneyin.');
+    //                }
+    //            },
+    //            error: function () {
+    //                alert('Bir hata oluştu, lütfen tekrar deneyin.');
+    //            }
+    //        });
+    //    });
+    //});
 
 
 
     $(document).ready(function () {
+        // Yanıt formunu açma/kapama
         $(".reply-link").click(function (event) {
             event.preventDefault(); // Sayfa yenilenmesini engelle
             var commentId = $(this).data("comment-id");
-            $("#replyForm_" + commentId).show();
+            $("#replyForm_" + commentId).toggle();
         });
 
-        $(".cevap-gonder-btn").click(function () {
-            var commentId = $(this).closest("div.reply-form").attr("id").replace("replyForm_", "");
-            var cevapMetni = $("#cevapMetni_" + commentId).val();
-            var cevapVerenMail = $("cevapMailAdresi_" + commentId).val();
-            var articleId = $("#articleId").val();
+        // Yanıt gönderme
+        $(".cevap-gonder-btn").click(function (event) {
+            event.preventDefault(); // Buton tıklaması ile formun varsayılan gönderimini engelle
 
+            var commentId = $(this).data("comment-id");
+            var cevapMetni = $("#cevapMetni_" + commentId).val();
+            var cevapVerenMail = $("#cevapMailAdresi_" + commentId).val();
+            var articleId = $("#articleId").val();
 
             $.ajax({
                 url: "/Makaleler/YorumCevapla",
                 type: 'POST',
-                data: { "yorumId": commentId, "cevapMetni": cevapMetni, "cevapVerenMail": cevapVerenMail, "articleId": articleId },
+                data: {
+                    "yorumId": commentId,
+                    "cevapMetni": cevapMetni,
+                    "cevapVerenMail": cevapVerenMail,
+                    "articleId": articleId
+                },
                 success: function (result) {
+                    if (result.success) {
+                        var response = result.response;
+                        var yorumCevapDiv = $("#commentResponse_"+commentId);
 
-                    if (result != null) {
-                        var yorumCevapDiv = $("#commentResponse");
                         yorumCevapDiv.append(
-                            " <div class='row'>         <div class='col-1'></div>   <div class='col-10'><h5>"+result.UserName+" </h5><p class='posted'><i class='fa fa-clock-o'></i>"+result.ResponseDate+"</p> <p>" + result.CommentContent+" </p></div></div>"
-                        )
-
-
+                            "<div class='row' style='margin-left: 20px;'>" +
+                            "<div class='col-1'></div>" +
+                            "<div class='col-10'>" +
+                            "<h5>" + response.UserName + "</h5>" +
+                            "<p class='posted'><i class='fa fa-clock-o'></i> " + formatJsonDate(response.ResponseDate) + "</p>" +
+                            "<p>" + response.YorumCevapMetni + "</p>" +
+                            "</div>" +
+                            "</div>"
+                        );
 
                         alert('Cevabınız başarıyla gönderildi!');
+                        $("#replyForm_" + commentId).hide();
+                    } else {
+                        alert(result.message || 'Bir hata oluştu, lütfen tekrar deneyin.');
                     }
-
-
-
-
-
-                    // Başarılı gönderim sonrası yapılacak işlemler
                 },
                 error: function () {
                     alert('Bir hata oluştu, lütfen tekrar deneyin.');
@@ -256,56 +491,20 @@
         });
     });
 
-    function YorumEkle() {
-        var articleId = document.getElementById("articleId").value;
-        var yoruMetin = document.getElementById("comment").value;
-        var email = document.getElementById("gelenMailAdresi").value;
-
-
-
-
-
-        //debugger;
-        $.ajax
-            ({
-                url: "/Makaleler/YorumEkle",
-                type: 'POST',
-                //data: { id: id, userId: userId, yorumMetin: yorumMetin },
-                data: { "articleid": articleId, "yorumMetin": yoruMetin, "email": email },
-                success: function (result) {
-                    debugger;
-                    if (result != null) {
-                        var ekleYorumSatiri = document.getElementById("commentline");
-                        var isim = result.UserName;
-
-                        //with (ekleYorumSatiri) {
-                        //    append('<div class="row comment"><div class="col-md-3 col-lg-2 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class="Yanıtla"><a href="#"><i class="fa fa-reply"></i> Reply</a></p></div></div>')
-                        //}
-
-                        $('#commentline').append('<div class="row comment"><div class="col-md-1 col-lg-1 text-center text-md-center"></div><div class="col-md-9 col-lg-10"><h5>' + result.UserName + '</h5><p class="posted"><i class="fa fa-clock-o"></i>' + result.CommentDateTime + '</p><p>' + result.CommentContent + '</p><p class=" Reply"><a href="#" class="reply-link" data-comment-id="'+result.CommetId+'"><i class="fa fa-reply"></i> Yanıtla</a></p></div></div>');
-                        //alert('Yorum eklendi');
-                    }
-
-
-
-                },
-                error: function () {
-
-                    alert('Yorum ekleyebilmek için üye olmanız gerekmektedir.');
-
-                    // debugger;
-                }
-
-            });
+    // Unix epoch tarihini formatlamak için yardımcı fonksiyon
+    function formatJsonDate(jsonDate) {
+        var date = new Date(parseInt(jsonDate.replace(/[^0-9]/g, '')));
+        return date.toLocaleDateString() + " " + date.toLocaleTimeString();
     }
 
 
-    $('#yorumYap').submit(function (event) {
-        event.preventDefault(); // Formun gönderimini engelle
-        YorumEkle(); // AJAX isteğini gönder
-    });
 
 
-    </script>
+
+
+
+
+
+</script>
 
 

@@ -10,10 +10,10 @@ namespace BlogSite.Web.Models
         public int CommetId { get; set; }
         public int ArticleId { get; set; }//Article
         public string CommentContent{ get; set; }//Comment
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public string  UserName{ get; set; }
         public DateTime CommentDatetime { get; set; }
-
+        //public string UserName { get; set; }
 
 
     }

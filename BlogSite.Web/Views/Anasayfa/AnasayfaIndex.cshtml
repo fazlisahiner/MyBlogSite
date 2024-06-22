@@ -76,6 +76,15 @@
                                         }
                                     }
 
+                                @foreach ( var res in ViewBag.CommentResponse )
+                                {
+                                    if ( res.ArticleId == makale.ArticleId)
+                                    {
+                                        sayac += 1;
+                                    }
+                                }
+
+
 
                                     @sayac
                                 </i> Yorum
@@ -141,12 +150,3 @@
         </div>
     </div>
 </div>
-@*<script>
-        function icerikTemizle(event)
-        {
-            var htmlYok = Regex.Replace(event, "<.*?>", string.Empty);
-
-        }
-
-
-    </script>*@

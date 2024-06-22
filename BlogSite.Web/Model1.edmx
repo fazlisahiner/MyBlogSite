@@ -32,10 +32,11 @@
           </Key>
           <Property Name="ResponseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ResponseContent" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
           <Property Name="CommentId" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="date" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -43,10 +44,11 @@
           </Key>
           <Property Name="CommetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
           <Property Name="Content" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="CreateDate" Type="date" Nullable="false" />
           <Property Name="UpdateDate" Type="date" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -127,10 +129,11 @@
           </Key>
           <Property Name="CommetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -174,12 +177,13 @@
           </Key>
           <Property Name="ResponseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ResponseContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
           <Property Name="CommentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CommentResponse1" Relationship="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse" FromRole="CommentResponse" ToRole="CommentResponse1" />
           <NavigationProperty Name="CommentResponse2" Relationship="MyBlogSiteDBModel.FK_CommentResponse_CommentResponse" FromRole="CommentResponse1" ToRole="CommentResponse" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_CommentResponse_CommentResponse">
           <End Type="MyBlogSiteDBModel.CommentResponse" Role="CommentResponse" Multiplicity="1" />
@@ -225,6 +229,7 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="MyBlogSiteDBModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="CommetId" ColumnName="CommetId" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -263,6 +268,7 @@
           <EntitySetMapping Name="CommentResponse">
             <EntityTypeMapping TypeName="MyBlogSiteDBModel.CommentResponse">
               <MappingFragment StoreEntitySet="CommentResponse">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CommentId" ColumnName="CommentId" />

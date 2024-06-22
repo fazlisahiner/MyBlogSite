@@ -20,6 +20,7 @@ namespace BlogSite.Web.Controllers
         {
             MyBlogSiteDBEntities db = new MyBlogSiteDBEntities();
             ViewBag.CategoryList = db.Categories.ToList();
+            ViewBag.CommentResponse = db.CommentResponse.ToList();
 
 
             if (id==null)
